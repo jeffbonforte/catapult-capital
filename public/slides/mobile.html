@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catapult Capital — Mobile Deck</title>
+<link rel="icon" href="../assets/catapult-favicon.png">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:#0B2545;font-family:var(--font-sans);color:var(--ink);
+    /* dark stage so the phone column reads on desktop */
+    background:radial-gradient(120% 80% at 50% 0%,#13294a,#070f1d);}
+
+  /* ---- phone column ---- */
+  .deck{position:relative;max-width:440px;margin:0 auto;height:100svh;height:100dvh;
+    background:var(--paper);overflow-y:scroll;scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;-webkit-overflow-scrolling:touch;
+    box-shadow:0 0 80px rgba(0,0,0,.5);scrollbar-width:none}
+  .deck::-webkit-scrollbar{display:none}
+
+  /* ---- one slide ---- */
+  .s{position:relative;height:100svh;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
+    display:flex;flex-direction:column;padding:clamp(28px,7vw,40px);overflow:hidden}
+  .s.navy{background:linear-gradient(165deg,#0E2E54,#0B2545 70%);color:var(--fg-on-brand)}
+  .s.paper{background:var(--paper)}
+  .s.white{background:var(--white)}
+
+  .grid-tex{position:absolute;inset:0;background-image:linear-gradient(rgba(159,182,217,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(159,182,217,.07) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 100% 75% at 78% 12%,#000,transparent 80%);pointer-events:none}
+
+  .eyebrow{font-family:var(--font-brand);text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--slate-500)}
+  .navy .eyebrow{color:#9FB6D9}
+  .spacer{flex:1}
+  .logo{height:24px;width:auto;align-self:flex-start}
+  .mark-foot{position:absolute;left:clamp(28px,7vw,40px);bottom:30px;height:22px}
+  .pageno{position:absolute;right:clamp(28px,7vw,40px);bottom:28px;font-family:var(--font-mono);font-size:12px;color:var(--slate-400)}
+  .navy .pageno{color:#5E78A0}
+
+  h1.title{font-family:var(--font-serif);font-weight:400;font-size:clamp(34px,9vw,44px);line-height:1.06;letter-spacing:-.015em;margin:14px 0 0;color:#fff}
+  .lead{font-family:var(--font-serif);font-weight:300;font-size:clamp(17px,4.6vw,20px);line-height:1.5;color:#C9D7EA;margin-top:18px}
+  .paper .lead,.white .lead{color:var(--slate-600)}
+
+  h2.head{font-family:var(--font-serif);font-weight:500;font-size:clamp(28px,7.4vw,36px);line-height:1.12;letter-spacing:-.01em;margin:12px 0 0}
+
+  /* section divider */
+  .secno{font-family:var(--font-mono);font-size:15px;letter-spacing:.14em;color:#9FB6D9}
+  h1.sec{font-family:var(--font-serif);font-weight:400;font-size:clamp(40px,11vw,54px);line-height:1.02;letter-spacing:-.02em;margin:14px 0 0;color:#fff}
+
+  /* statement */
+  .statement{font-family:var(--font-serif);font-weight:300;font-size:clamp(30px,8.2vw,40px);line-height:1.22;letter-spacing:-.01em;color:#fff}
+  .statement b{font-weight:600}
+
+  /* metrics stacked */
+  .metrics{display:flex;flex-direction:column;gap:0}
+  .metric{padding:22px 0;border-top:1px solid var(--border)}
+  .metric:last-child{border-bottom:1px solid var(--border)}
+  .metric .v{font-family:var(--font-mono);font-weight:500;font-size:clamp(40px,12vw,52px);line-height:1;color:var(--navy-600);font-variant-numeric:tabular-nums}
+  .metric .l{font-size:14px;color:var(--slate-600);margin-top:8px}
+
+  /* bullets */
+  ul.pts{list-style:none;margin:26px 0 0;padding:0}
+  ul.pts li{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--border)}
+  ul.pts li:first-child{border-top:1px solid var(--border)}
+  ul.pts li .n{font-family:var(--font-brand);color:var(--navy-600);font-size:13px;letter-spacing:.08em;padding-top:4px;flex:none;width:26px}
+  ul.pts li .tx{font-size:clamp(16px,4.4vw,18px);line-height:1.4}
+  ul.pts li b{font-weight:600;color:var(--ink)}
+  ul.pts li .sub{color:var(--slate-600)}
+
+  /* chart */
+  .chart-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:22px}
+  .figrow{display:flex;gap:30px;margin-top:22px}
+  .figrow .v{font-family:var(--font-mono);font-weight:500;font-size:clamp(26px,7vw,30px);font-variant-numeric:tabular-nums}
+  .figrow .l{font-size:13px;color:var(--slate-600);margin-top:4px}
+
+  /* quote */
+  .quote{font-family:var(--font-serif);font-weight:300;font-size:clamp(26px,7.2vw,34px);line-height:1.3;letter-spacing:-.01em;color:#fff}
+  .quote .mark{color:var(--brass-500);font-size:1.5em;line-height:0;vertical-align:-.25em;margin-right:.04em}
+  .attr{margin-top:30px;font-size:15px;color:#9FB6D9}
+  .attr b{display:block;color:#fff;font-weight:600;font-size:17px;font-family:var(--font-sans);margin-bottom:2px}
+
+  /* closing contact */
+  .contact{margin-top:30px;display:flex;flex-direction:column;gap:22px}
+  .contact .k{font-family:var(--font-brand);text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#9FB6D9;margin-bottom:7px}
+  .contact .val{font-size:17px;color:#fff;line-height:1.5}
+
+  /* ---- progress + counter (fixed within column) ---- */
+  .chrome{position:fixed;top:0;left:0;right:0;z-index:20;pointer-events:none}
+  .progress-wrap{max-width:440px;margin:0 auto;height:3px;background:rgba(118,130,127,.22)}
+  .progress{height:100%;width:0;background:var(--navy-600);transition:width .25s var(--ease-standard)}
+  .navy-region .progress{background:#9FB6D9}
+  .counter{position:fixed;bottom:0;left:0;right:0;z-index:20;pointer-events:none}
+  .counter-inner{max-width:440px;margin:0 auto;display:flex;justify-content:center;padding-bottom:14px}
+  .counter-pill{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--slate-600);background:rgba(250,250,248,.0)}
+
+  /* scroll hint on first slide */
+  .hint{position:absolute;left:0;right:0;bottom:30px;display:flex;flex-direction:column;align-items:center;gap:7px;color:#9FB6D9;font-size:11px;font-family:var(--font-brand);text-transform:uppercase;letter-spacing:.18em}
+  .hint .chev{width:18px;height:18px;border-right:1.5px solid #9FB6D9;border-bottom:1.5px solid #9FB6D9;transform:rotate(45deg);animation:bob 1.8s var(--ease-standard) infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(5px) rotate(45deg)}}
+  @media (prefers-reduced-motion:reduce){.hint .chev{animation:none}}
+</style>
+</head>
+<body>
+<div class="chrome"><div class="progress-wrap"><div class="progress" id="bar"></div></div></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="s navy" data-screen-label="01 Title">
+    <div class="grid-tex"></div>
+    <img class="logo" src="../assets/catapult-logo-horizontal-reversed.png" alt="Catapult Capital">
+    <div class="spacer"></div>
+    <span class="eyebrow">Annual Investor Meeting · 2026</span>
+    <h1 class="title">Fund III — year-end review &amp; the road ahead</h1>
+    <p class="lead">Patient capital, accounted to the dollar.</p>
+    <div class="spacer"></div>
+    <div class="hint"><span>Scroll</span><span class="chev"></span></div>
+  </section>
+
+  <!-- 2 · SECTION -->
+  <section class="s navy" data-screen-label="02 Section">
+    <div class="grid-tex"></div>
+    <div class="spacer"></div>
+    <div class="secno">01 — PERFORMANCE</div>
+    <h1 class="sec">Where the portfolio stands today.</h1>
+    <div class="spacer"></div>
+    <img class="mark-foot" src="../assets/catapult-mark-white.png" alt="">
+  </section>
+
+  <!-- 3 · STATEMENT -->
+  <section class="s navy" data-screen-label="03 Statement">
+    <div class="grid-tex"></div>
+    <span class="eyebrow">The year in one line</span>
+    <div class="spacer"></div>
+    <p class="statement">A disciplined year of <b>compounding</b> — net IRR expanded while we held the line on entry multiples.</p>
+    <div class="spacer"></div>
+    <div class="pageno" style="color:#5E78A0">03</div>
+  </section>
+
+  <!-- 4 · METRICS -->
+  <section class="s paper" data-screen-label="04 Metrics">
+    <span class="eyebrow">Fund III · net of fees</span>
+    <h2 class="head">The numbers behind the year.</h2>
+    <div class="spacer"></div>
+    <div class="metrics">
+      <div class="metric"><div class="v">18.6%</div><div class="l">Net IRR since inception</div></div>
+      <div class="metric"><div class="v">2.4×</div><div class="l">Net MOIC · 2.9× gross</div></div>
+      <div class="metric"><div class="v">$397M</div><div class="l">Portfolio fair value</div></div>
+    </div>
+    <div class="spacer"></div>
+    <img class="mark-foot" src="../assets/catapult-favicon.png" alt="">
+    <div class="pageno">04</div>
+  </section>
+
+  <!-- 5 · BULLETS -->
+  <section class="s white" data-screen-label="05 Content">
+    <span class="eyebrow">Investment thesis</span>
+    <h2 class="head">Three convictions guide every deal.</h2>
+    <ul class="pts">
+      <li><span class="n">01</span><span class="tx"><b>Operating discipline over leverage.</b> <span class="sub">Most value creation is organic.</span></span></li>
+      <li><span class="n">02</span><span class="tx"><b>Underwrite the downside first.</b> <span class="sub">Every thesis is sized for the bear case.</span></span></li>
+      <li><span class="n">03</span><span class="tx"><b>Concentrate and hold.</b> <span class="sub">Fourteen great companies, owned for the long term.</span></span></li>
+    </ul>
+    <div class="spacer"></div>
+    <div class="pageno">05</div>
+  </section>
+
+  <!-- 6 · CHART -->
+  <section class="s paper" data-screen-label="06 Chart">
+    <span class="eyebrow">Net asset value</span>
+    <h2 class="head">NAV has compounded since 2019.</h2>
+    <div class="chart-card">
+      <svg viewBox="0 0 360 200" width="100%" style="display:block">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#134480" stop-opacity=".18"/><stop offset="100%" stop-color="#134480" stop-opacity="0"/></linearGradient></defs>
+        <line x1="6" y1="50" x2="354" y2="50" stroke="#E2E4E5"/><line x1="6" y1="100" x2="354" y2="100" stroke="#E2E4E5"/><line x1="6" y1="150" x2="354" y2="150" stroke="#E2E4E5"/>
+        <path d="M6,182 L40,174 L78,162 L116,166 L154,142 L192,122 L230,112 L268,90 L306,66 L354,22 L354,194 L6,194 Z" fill="url(#g)"/>
+        <path d="M6,182 L40,174 L78,162 L116,166 L154,142 L192,122 L230,112 L268,90 L306,66 L354,22" fill="none" stroke="#134480" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="354" cy="22" r="4.5" fill="#134480" stroke="#fff" stroke-width="2"/>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--slate-400);margin-top:8px"><span>2019</span><span>2026</span></div>
+    </div>
+    <div class="figrow">
+      <div><div class="v" style="color:var(--navy-600)">+6.4%</div><div class="l">This quarter</div></div>
+      <div><div class="v" style="color:var(--gain)">0.63×</div><div class="l">DPI to date</div></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="pageno">06</div>
+  </section>
+
+  <!-- 7 · QUOTE -->
+  <section class="s navy" data-screen-label="07 Quote">
+    <div class="grid-tex"></div>
+    <div class="spacer"></div>
+    <p class="quote"><span class="mark">“</span>We'd rather own fourteen great companies than forty average ones — and be right slowly than wrong fast.</p>
+    <div class="attr"><b>Eleanor Chase</b>Managing Partner, Catapult Capital</div>
+    <div class="spacer"></div>
+    <div class="pageno" style="color:#5E78A0">07</div>
+  </section>
+
+  <!-- 8 · CLOSING -->
+  <section class="s navy" data-screen-label="08 Closing">
+    <div class="grid-tex"></div>
+    <div class="spacer"></div>
+    <img class="logo" src="../assets/catapult-logo-horizontal-reversed.png" alt="Catapult Capital" style="height:30px">
+    <h1 class="title" style="font-size:clamp(30px,8vw,38px);margin-top:24px">Thank you.</h1>
+    <div class="contact">
+      <div><div class="k">Investor relations</div><div class="val">ir@catapultcapital.com<br>+1 (415) 555-0188</div></div>
+      <div><div class="k">Office</div><div class="val">One Market Plaza, Suite 3600<br>San Francisco, CA 94105</div></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="pageno" style="color:#5E78A0">08</div>
+  </section>
+
+</div>
+
+<div class="counter"><div class="counter-inner"><span class="counter-pill" id="counter">01 / 08</span></div></div>
+
+<script>
+  (function(){
+    var deck = document.getElementById('deck');
+    var bar = document.getElementById('bar');
+    var counter = document.getElementById('counter');
+    var chrome = document.querySelector('.chrome');
+    var slides = Array.prototype.slice.call(deck.querySelectorAll('.s'));
+    var total = slides.length;
+    var pad = function(n){ return (n<10?'0':'')+n; };
+
+    function update(){
+      var max = deck.scrollHeight - deck.clientHeight;
+      var pct = max > 0 ? (deck.scrollTop / max) : 0;
+      bar.style.width = (pct*100).toFixed(2) + '%';
+      // active slide = nearest to top
+      var idx = Math.round(deck.scrollTop / deck.clientHeight);
+      idx = Math.max(0, Math.min(total-1, idx));
+      counter.textContent = pad(idx+1) + ' / ' + pad(total);
+      var navy = slides[idx].classList.contains('navy');
+      chrome.classList.toggle('navy-region', navy);
+      counter.style.color = navy ? '#9FB6D9' : 'var(--slate-600)';
+    }
+    deck.addEventListener('scroll', function(){ window.requestAnimationFrame(update); }, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+</body>
+</html>

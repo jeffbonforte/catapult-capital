@@ -1,0 +1,220 @@
+/* ============================================================================
+   CATAPULT CAPITAL — Design Tokens
+   Single source of truth for color + type + spacing + radius + shadow.
+   Import on every surface:  <link rel="stylesheet" href="colors_and_type.css">
+   Colors derived from the logo: Navy #134480, Slate #76827F.
+   ============================================================================ */
+
+/* ---- Webfonts ----------------------------------------------------------- */
+/* All brand families self-hosted from fonts/ — no CDN dependency. */
+
+/* Spectral — self-hosted static weights (display / headings / report body) */
+@font-face{font-family:'Spectral';font-style:normal;font-weight:200;font-display:swap;src:url('fonts/Spectral-ExtraLight.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:200;font-display:swap;src:url('fonts/Spectral-ExtraLightItalic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/Spectral-Light.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:300;font-display:swap;src:url('fonts/Spectral-LightItalic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/Spectral-Regular.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/Spectral-Italic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/Spectral-Medium.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:500;font-display:swap;src:url('fonts/Spectral-MediumItalic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/Spectral-SemiBold.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/Spectral-SemiBoldItalic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/Spectral-Bold.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:700;font-display:swap;src:url('fonts/Spectral-BoldItalic.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/Spectral-ExtraBold.ttf') format('truetype');}
+@font-face{font-family:'Spectral';font-style:italic;font-weight:800;font-display:swap;src:url('fonts/Spectral-ExtraBoldItalic.ttf') format('truetype');}
+
+/* Jost — variable (weight 100–900), self-hosted */
+@font-face{font-family:'Jost';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/Jost-VariableFont_wght.ttf') format('truetype');}
+@font-face{font-family:'Jost';font-style:italic;font-weight:100 900;font-display:swap;src:url('fonts/Jost-Italic-VariableFont_wght.ttf') format('truetype');}
+
+/* Hanken Grotesk — variable (weight 100–900), self-hosted */
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/HankenGrotesk-VariableFont_wght.ttf') format('truetype');}
+@font-face{font-family:'Hanken Grotesk';font-style:italic;font-weight:100 900;font-display:swap;src:url('fonts/HankenGrotesk-Italic-VariableFont_wght.ttf') format('truetype');}
+
+/* IBM Plex Mono — self-hosted static weights */
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:100;font-display:swap;src:url('fonts/IBMPlexMono-Thin.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:100;font-display:swap;src:url('fonts/IBMPlexMono-ThinItalic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:200;font-display:swap;src:url('fonts/IBMPlexMono-ExtraLight.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:200;font-display:swap;src:url('fonts/IBMPlexMono-ExtraLightItalic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/IBMPlexMono-Light.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:300;font-display:swap;src:url('fonts/IBMPlexMono-LightItalic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/IBMPlexMono-Regular.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/IBMPlexMono-Italic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/IBMPlexMono-Medium.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:500;font-display:swap;src:url('fonts/IBMPlexMono-MediumItalic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/IBMPlexMono-SemiBold.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/IBMPlexMono-SemiBoldItalic.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/IBMPlexMono-Bold.ttf') format('truetype');}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:700;font-display:swap;src:url('fonts/IBMPlexMono-BoldItalic.ttf') format('truetype');}
+
+:root {
+  /* ===== BRAND — NAVY SCALE ============================================== */
+  --navy-900: #0B2545;   /* ink navy — deepest grounds */
+  --navy-800: #0E2E54;
+  --navy-700: #103A6B;
+  --navy-600: #134480;   /* ★ PRIMARY brand navy (logo mark) */
+  --navy-500: #2A5B9E;
+  --navy-400: #5A82C0;
+  --navy-300: #9FB6D9;
+  --navy-200: #C9D7EA;
+  --navy-100: #E3EAF4;
+  --navy-50:  #F2F5FA;
+
+  /* ===== SLATE SCALE (wordmark grey, cool/green-tinted) ================== */
+  --slate-700: #4A534F;
+  --slate-600: #5E6864;
+  --slate-500: #76827F;  /* ★ logo wordmark color */
+  --slate-400: #97A19D;
+  --slate-300: #BCC3C0;
+  --slate-200: #D9DEDC;
+  --slate-100: #ECEFED;
+
+  /* ===== WARM NEUTRALS / PAPER ========================================== */
+  --ink:       #14181C;  /* primary text, near-black */
+  --grey-700:  #353B40;
+  --grey-600:  #545B61;
+  --grey-500:  #767D83;
+  --grey-400:  #9AA0A5;
+  --grey-300:  #C4C8CB;
+  --grey-200:  #E2E4E5;
+  --grey-100:  #EFF0F0;
+  --paper:     #FAFAF8;  /* warm off-white — reports & sections */
+  --paper-2:   #F4F4F1;  /* slightly deeper paper */
+  --white:     #FFFFFF;
+
+  /* ===== ACCENT — BRASS (premium, used sparingly) ======================= */
+  --brass-600: #8A663B;
+  --brass-500: #A87E4F;  /* ★ accent */
+  --brass-300: #CBB48F;
+  --brass-100: #EFE7DA;
+
+  /* ===== FINANCE SEMANTICS (data colors) ================================ */
+  --gain:      #1B7A52;  /* positive / up */
+  --gain-bg:   #E6F1EC;
+  --loss:      #B4392F;  /* negative / down */
+  --loss-bg:   #F6E7E5;
+  --warn:      #B5851C;
+  --warn-bg:   #F6EEDA;
+  --info:      var(--navy-600);
+
+  /* ===== CHART SERIES (ordered) ========================================= */
+  --chart-1: #134480;  /* navy */
+  --chart-2: #76827F;  /* slate */
+  --chart-3: #A87E4F;  /* brass */
+  --chart-4: #2A5B9E;  /* mid blue */
+  --chart-5: #4A6E66;  /* deep teal-slate */
+  --chart-6: #9FB6D9;  /* light navy */
+
+  /* ===== SEMANTIC ROLES (light theme — default) ========================= */
+  --bg:            var(--paper);
+  --bg-elevated:   var(--white);
+  --bg-sunken:     var(--paper-2);
+  --bg-brand:      var(--navy-600);
+  --bg-brand-deep: var(--navy-900);
+
+  --fg:            var(--ink);
+  --fg-muted:      var(--slate-600);
+  --fg-subtle:     var(--slate-500);
+  --fg-on-brand:   #EAF0F8;       /* text on navy */
+  --fg-on-brand-muted: #A9BEDC;
+
+  --border:        rgba(118,130,127,0.28);  /* hairline slate */
+  --border-strong: rgba(118,130,127,0.55);
+  --border-on-brand: rgba(255,255,255,0.18);
+
+  --link:          var(--navy-600);
+  --link-hover:    var(--navy-800);
+  --focus-ring:    var(--navy-400);
+
+  /* ===== TYPE FAMILIES =================================================== */
+  --font-serif: 'Spectral', Georgia, 'Times New Roman', serif;       /* display, headings, report body */
+  --font-sans:  'Hanken Grotesk', system-ui, -apple-system, sans-serif; /* UI, web body, dashboards */
+  --font-brand: 'Jost', sans-serif;                                  /* eyebrows / labels (CAPS) */
+  --font-mono:  'IBM Plex Mono', ui-monospace, Menlo, monospace; /* figures, tickers, code */
+
+  /* ===== TYPE SCALE (px) ================================================= */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   22px;
+  --text-xl:   28px;
+  --text-2xl:  36px;
+  --text-3xl:  48px;
+  --text-4xl:  64px;
+  --text-5xl:  84px;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.3;
+  --leading-normal: 1.55;
+  --leading-relaxed:1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-label: 0.18em;   /* Jost caps eyebrows */
+  --tracking-wide:  0.06em;
+
+  /* ===== SPACING (8px base) ============================================= */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ===== RADIUS ========================================================= */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* ===== SHADOW (subtle, cool) ========================================= */
+  --shadow-sm: 0 1px 2px rgba(11,37,69,0.06), 0 1px 1px rgba(11,37,69,0.04);
+  --shadow-md: 0 6px 16px rgba(11,37,69,0.10), 0 2px 4px rgba(11,37,69,0.06);
+  --shadow-lg: 0 18px 48px rgba(11,37,69,0.18), 0 6px 14px rgba(11,37,69,0.10);
+
+  /* ===== MOTION ========================================================= */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  --measure: 68ch;       /* long-form reading measure */
+  --container: 1120px;   /* default content max-width */
+}
+
+/* ============================================================================
+   SEMANTIC TYPE ROLES — apply directly or copy into component CSS.
+   ============================================================================ */
+.eyebrow {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg);
+}
+.h1 { font-family: var(--font-serif); font-weight: 500; font-size: var(--text-3xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--fg); }
+.h2 { font-family: var(--font-serif); font-weight: 500; font-size: var(--text-2xl); line-height: var(--leading-snug); color: var(--fg); }
+.h3 { font-family: var(--font-serif); font-weight: 600; font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--fg); }
+.h4 { font-family: var(--font-sans); font-weight: 600; font-size: var(--text-lg); line-height: var(--leading-snug); color: var(--fg); }
+.lead { font-family: var(--font-serif); font-weight: 300; font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--fg-muted); }
+.p { font-family: var(--font-sans); font-weight: 400; font-size: var(--text-base); line-height: var(--leading-normal); color: var(--fg); }
+.report-body { font-family: var(--font-serif); font-weight: 400; font-size: var(--text-md); line-height: var(--leading-relaxed); color: var(--fg); max-width: var(--measure); }
+.small { font-family: var(--font-sans); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--fg-muted); }
+.caption { font-family: var(--font-sans); font-size: var(--text-xs); line-height: var(--leading-normal); color: var(--fg-subtle); }
+.figure { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--fg); }
+.ticker { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
