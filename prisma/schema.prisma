@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  name        String
+  role        Role      @default(LP)
+  createdAt   DateTime  @default(now())
+  lastLoginAt DateTime?
+
+  dealAccess  DealAccess[]
+  docViews    DocumentView[]
+  magicLinks  MagicLink[]
+  createdDeals Deal[]   @relation("CreatedBy")
+}
+
+enum Role {
+  LP
+  ADMIN
+  SUPER_ADMIN
+}
+
+model Deal {
+  id          String     @id @default(cuid())
+  name        String
+  company     String
+  description String?
+  sector      String?
+  status      DealStatus @default(ACTIVE)
+  investDate  DateTime?
+  createdAt   DateTime   @default(now())
+  createdById String
+  createdBy   User       @relation("CreatedBy", fields: [createdById], references: [id])
+
+  access    DealAccess[]
+  documents Document[]
+  updates   DealUpdate[]
+}
+
+enum DealStatus {
+  ACTIVE
+  REALIZED
+  CLOSED
+}
+
+model DealAccess {
+  id             String   @id @default(cuid())
+  userId         String
+  dealId         String
+  amountInvested Float?
+  currentValue   Float?
+  investDate     DateTime?
+  isRestricted   Boolean  @default(false)
+  accessCode     String?
+  docusignStatus String?
+  docusignEnvId  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deal Deal @relation(fields: [dealId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, dealId])
+}
+
+model Document {
+  id        String  @id @default(cuid())
+  dealId    String
+  title     String
+  type      DocType
+  fileUrl   String
+  fileKey   String
+  fileSize  Int?
+  createdAt DateTime @default(now())
+
+  deal  Deal           @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  views DocumentView[]
+}
+
+enum DocType {
+  RESEARCH_MEMO
+  INVESTMENT_DECK
+  LEGAL_DOC
+  UPDATE_REPORT
+  OTHER
+}
+
+model DocumentView {
+  id         String   @id @default(cuid())
+  userId     String
+  documentId String
+  viewedAt   DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+}
+
+model DealUpdate {
+  id        String   @id @default(cuid())
+  dealId    String
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+
+  deal Deal @relation(fields: [dealId], references: [id], onDelete: Cascade)
+}
+
+model MagicLink {
+  id        String    @id @default(cuid())
+  userId    String
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
