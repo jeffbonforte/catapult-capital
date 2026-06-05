@@ -26,6 +26,7 @@
 .nav-burger{display:none;background:none;border:0;cursor:pointer;padding:6px}
 .nav--top{background:transparent}
 .nav--top .nav-link,.nav--top .nav-burger{color:#EAF0F8}
+.nav--top .nav-logo{filter:brightness(0) invert(1)}
 .nav--scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .nav--scrolled .nav-link,.nav--scrolled .nav-burger{color:var(--ink)}
 
