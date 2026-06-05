@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+export const dynamic = 'force-dynamic'
 import Link from 'next/link'
 
 function formatCurrency(n: number) {
