@@ -12,7 +12,7 @@ export async function sendMagicLink(email: string, name: string, token: string) 
   }
 
   await resend.emails.send({
-    from: 'Catapult Capital <investors@catapultcap.com>',
+    from: 'Catapult Capital <onboarding@resend.dev>',
     to: email,
     subject: 'Your Catapult Capital secure login link',
     html: `
