@@ -51,7 +51,7 @@ export default function DealsPage() {
       {/* Sidebar */}
       <aside className="sidebar">
         <div className="sb-logo">
-          <img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" />
+          <img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" style={{filter:'brightness(0) invert(1)'}} />
         </div>
         <div className="sb-section">
           <div className="lbl">Portal</div>
