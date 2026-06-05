@@ -28,7 +28,7 @@ export default async function DealsPage() {
             </tr>
           </thead>
           <tbody>
-            {deals.map((deal, i) => (
+            {deals.map((deal: (typeof deals)[0], i: number) => (
               <tr key={deal.id} style={{borderBottom: i < deals.length-1 ? '1px solid var(--border)' : 'none'}}>
                 <td style={{padding:'14px 16px'}}>
                   <div style={{fontWeight:600,fontSize:14}}>{deal.name}</div>
