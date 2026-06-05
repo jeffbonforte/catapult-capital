@@ -1,15 +1,14 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function sendMagicLink(email: string, name: string, token: string) {
   const url = `${process.env.NEXT_PUBLIC_APP_URL}/portal/auth/${token}`
 
-  // In dev with placeholder key, just log
   if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.startsWith('re_placeholder')) {
     console.log(`\n🔗 MAGIC LINK for ${email}:\n${url}\n`)
     return { success: true, dev: true }
   }
+
+  const resend = new Resend(process.env.RESEND_API_KEY)
 
   await resend.emails.send({
     from: 'Catapult Capital <onboarding@resend.dev>',
