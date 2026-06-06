@@ -30,7 +30,9 @@ export async function getSession() {
 export async function getCurrentUser() {
   const session = await getSession()
   if (!session) return null
-  return prisma.user.findUnique({ where: { id: session.userId } })
+  const user = await prisma.user.findUnique({ where: { id: session.userId } })
+  if (!user || user.isLocked) return null
+  return user
 }
 
 export async function createMagicLink(email: string): Promise<string | null> {
@@ -48,6 +50,7 @@ export async function verifyMagicLink(token: string) {
     where: { token }, include: { user: true }
   })
   if (!link || link.usedAt || link.expiresAt < new Date()) return null
+  if (link.user.isLocked) return null
   await prisma.magicLink.update({ where: { id: link.id }, data: { usedAt: new Date() } })
   await prisma.user.update({ where: { id: link.userId }, data: { lastLoginAt: new Date() } })
   return link.user

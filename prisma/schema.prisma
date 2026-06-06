@@ -10,7 +10,9 @@ model User {
   id          String    @id @default(cuid())
   email       String    @unique
   name        String
+  company     String?
   role        Role      @default(LP)
+  isLocked    Boolean   @default(false)
   createdAt   DateTime  @default(now())
   lastLoginAt DateTime?
 

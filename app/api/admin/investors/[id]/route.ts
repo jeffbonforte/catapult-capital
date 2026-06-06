@@ -30,6 +30,23 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   if (!await requireAdmin()) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   const { id } = await params
   const data = await req.json()
-  const user = await prisma.user.update({ where: { id }, data: { name: data.name, email: data.email } })
+  const user = await prisma.user.update({
+    where: { id },
+    data: {
+      name: data.name,
+      email: data.email,
+      company: data.company ?? null,
+      isLocked: data.isLocked,
+    }
+  })
   return NextResponse.json(user)
+}
+
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const admin = await requireAdmin()
+  if (!admin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  const { id } = await params
+  if (id === admin.id) return NextResponse.json({ error: 'Cannot delete yourself' }, { status: 400 })
+  await prisma.user.delete({ where: { id } })
+  return NextResponse.json({ ok: true })
 }
