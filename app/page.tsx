@@ -91,8 +91,8 @@ function Nav({ onRequest, scrolled, onNav }: { onRequest: () => void; scrolled: 
             <span key={l} className="nav-link" onClick={() => onNav && onNav(l)}>{l}</span>
           ))}
           <button className={scrolled ? 'btn btn-primary' : 'btn btn-light'}
-                  style={{padding:'10px 18px',fontSize:14}} onClick={onRequest}>
-            LP login <IconLock size={15} />
+                  style={{padding:'10px 18px',fontSize:14}} onClick={() => window.location.href='/portal/login'}>
+            LP Login <IconLock size={15} />
           </button>
         </nav>
         <button className="nav-burger" onClick={() => setOpen(o => !o)} aria-label="Menu">
@@ -109,8 +109,8 @@ function Nav({ onRequest, scrolled, onNav }: { onRequest: () => void; scrolled: 
                 {l}
               </span>
             ))}
-            <button className="btn btn-light" style={{marginTop:14}} onClick={() => { setOpen(false); onRequest(); }}>
-              LP login
+            <button className="btn btn-light" style={{marginTop:14}} onClick={() => window.location.href='/portal/login'}>
+              LP Login
             </button>
           </div>
         </div>

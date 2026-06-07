@@ -26,6 +26,11 @@ export default function DealDetail({ deal }: { deal: any }) {
   const [updateTitle, setUpdateTitle] = useState('')
   const [updateBody, setUpdateBody] = useState('')
   const [postingUpdate, setPostingUpdate] = useState(false)
+  const [editingUpdateId, setEditingUpdateId] = useState<string|null>(null)
+  const [editTitle, setEditTitle] = useState('')
+  const [editBody, setEditBody] = useState('')
+  const [savingUpdate, setSavingUpdate] = useState(false)
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string|null>(null)
 
   // Settings
   const [settingsForm, setSettingsForm] = useState({ name: deal.name, company: deal.company, description: deal.description || '', sector: deal.sector || '', status: deal.status })
@@ -67,7 +72,28 @@ export default function DealDetail({ deal }: { deal: any }) {
       body: JSON.stringify({ title: updateTitle, body: updateBody })
     })
     setPostingUpdate(false); setUpdateTitle(''); setUpdateBody('')
-    setMsg('Update posted.'); setTimeout(() => { setMsg(''); window.location.reload() }, 1000)
+    setMsg('Update posted.'); router.refresh(); setTimeout(() => setMsg(''), 2000)
+  }
+
+  async function saveUpdate(updateId: string) {
+    setSavingUpdate(true)
+    await fetch(`/api/admin/deals/${deal.id}/updates`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ updateId, title: editTitle, body: editBody })
+    })
+    setSavingUpdate(false); setEditingUpdateId(null)
+    setMsg('Update saved.'); router.refresh(); setTimeout(() => setMsg(''), 2000)
+  }
+
+  async function deleteUpdate(updateId: string) {
+    await fetch(`/api/admin/deals/${deal.id}/updates`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ updateId })
+    })
+    setConfirmDeleteId(null)
+    setMsg('Update deleted.'); router.refresh(); setTimeout(() => setMsg(''), 2000)
   }
 
   async function saveSettings(e: React.FormEvent) {
@@ -251,9 +277,56 @@ export default function DealDetail({ deal }: { deal: any }) {
           <div style={{display:'grid',gap:16}}>
             {deal.updates.map((u: any) => (
               <div key={u.id} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,padding:'20px 24px'}}>
-                <div style={{fontSize:12,color:'var(--slate-500)',marginBottom:6}}>{new Date(u.createdAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-                <h3 style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:18,margin:'0 0 10px'}}>{u.title}</h3>
-                <div style={{fontSize:14,color:'var(--slate-700)',lineHeight:1.7,whiteSpace:'pre-wrap'}}>{u.body}</div>
+                {editingUpdateId === u.id ? (
+                  <div>
+                    <input value={editTitle} onChange={e => setEditTitle(e.target.value)}
+                      style={{width:'100%',boxSizing:'border-box',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:15,fontFamily:'var(--font-sans)',marginBottom:10,outline:'none'}} />
+                    <textarea value={editBody} onChange={e => setEditBody(e.target.value)} rows={5}
+                      style={{width:'100%',boxSizing:'border-box',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:14,fontFamily:'var(--font-sans)',resize:'vertical',outline:'none',marginBottom:12}} />
+                    <div style={{display:'flex',gap:8}}>
+                      <button onClick={() => saveUpdate(u.id)} disabled={savingUpdate}
+                        style={{background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,padding:'8px 16px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:13}}>
+                        {savingUpdate ? 'Saving…' : 'Save'}
+                      </button>
+                      <button onClick={() => setEditingUpdateId(null)}
+                        style={{background:'none',border:'1px solid var(--border-strong)',borderRadius:6,padding:'8px 16px',cursor:'pointer',fontFamily:'var(--font-sans)',fontSize:13}}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : confirmDeleteId === u.id ? (
+                  <div>
+                    <p style={{fontSize:14,color:'var(--slate-700)',marginBottom:14}}>Delete this update? This cannot be undone.</p>
+                    <div style={{display:'flex',gap:8}}>
+                      <button onClick={() => deleteUpdate(u.id)}
+                        style={{background:'#dc2626',color:'#fff',border:'none',borderRadius:6,padding:'8px 16px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:13}}>
+                        Delete
+                      </button>
+                      <button onClick={() => setConfirmDeleteId(null)}
+                        style={{background:'none',border:'1px solid var(--border-strong)',borderRadius:6,padding:'8px 16px',cursor:'pointer',fontFamily:'var(--font-sans)',fontSize:13}}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:6}}>
+                      <div style={{fontSize:12,color:'var(--slate-500)'}}>{new Date(u.createdAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
+                      <div style={{display:'flex',gap:6}}>
+                        <button onClick={() => { setEditingUpdateId(u.id); setEditTitle(u.title); setEditBody(u.body) }}
+                          style={{background:'none',border:'1px solid var(--border-strong)',borderRadius:5,padding:'4px 11px',cursor:'pointer',fontFamily:'var(--font-sans)',fontSize:12,color:'var(--slate-600)'}}>
+                          Edit
+                        </button>
+                        <button onClick={() => setConfirmDeleteId(u.id)}
+                          style={{background:'none',border:'1px solid #fca5a5',borderRadius:5,padding:'4px 11px',cursor:'pointer',fontFamily:'var(--font-sans)',fontSize:12,color:'#dc2626'}}>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <h3 style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:18,margin:'0 0 10px'}}>{u.title}</h3>
+                    <div style={{fontSize:14,color:'var(--slate-700)',lineHeight:1.7,whiteSpace:'pre-wrap'}}>{u.body}</div>
+                  </div>
+                )}
               </div>
             ))}
             {deal.updates.length === 0 && <p style={{color:'var(--slate-500)',fontSize:14}}>No updates yet.</p>}
