@@ -124,7 +124,7 @@ export default function DealsPage() {
                         <div style={{fontFamily:'var(--font-serif)',fontSize:22,fontWeight:600,color:'var(--ink)'}}>{a.deal?.name || a.deal?.company}</div>
                         <div style={{fontSize:13,color:'var(--slate-600)',marginTop:4}}>{a.deal?.description}</div>
                       </div>
-                      {a.amountInvested && (
+                      {a.amountInvested && user?.role !== 'CONTACT' && (
                         <div style={{textAlign:'right',flexShrink:0,marginLeft:24}}>
                           <div style={{fontFamily:'var(--font-mono)',fontSize:22,fontWeight:500,color:'var(--navy-700)'}}>${(a.amountInvested/1e6).toFixed(1)}M</div>
                           <div style={{fontSize:11,color:'var(--slate-500)',marginTop:2}}>invested</div>

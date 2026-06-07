@@ -13,13 +13,17 @@ function formatCurrency(n: number) {
 export default function DealDashboard() {
   const { dealId } = useParams()
   const [data, setData] = useState<any>(null)
+  const [userRole, setUserRole] = useState<string>('')
   const [tab, setTab] = useState<'overview'|'documents'|'updates'|'sign'>('overview')
   const [docs, setDocs] = useState<any[]>([])
   const [updates, setUpdates] = useState<any[]>([])
 
   useEffect(() => {
     fetch(`/api/portal/deals/${dealId}`).then(r=>r.json()).then(setData)
+    fetch('/api/auth/me').then(r=>r.json()).then(u => setUserRole(u?.role || ''))
   }, [dealId])
+
+  const isContact = userRole === 'CONTACT'
 
   useEffect(() => {
     if (tab === 'documents') fetch(`/api/portal/deals/${dealId}/documents`).then(r=>r.json()).then(d => setDocs(Array.isArray(d) ? d : []))
@@ -78,21 +82,23 @@ export default function DealDashboard() {
           </div>
         )}
 
-        {/* KPI cards */}
-        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,marginBottom:28}}>
-          {[
-            { label: 'Current NAV', value: nav, sub: 'fair value' },
-            { label: 'Net MOIC', value: moic, sub: `${invested} invested` },
-            { label: 'Net IRR', value: irr, sub: 'since investment' },
-            { label: 'Amount invested', value: invested, sub: data.deal?.investDate ? new Date(data.deal.investDate).getFullYear().toString() : '' },
-          ].map(k => (
-            <div key={k.label} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,padding:'18px 20px'}}>
-              <div style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',marginBottom:10}}>{k.label}</div>
-              <div style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:30,color:'var(--ink)',lineHeight:1}}>{k.value}</div>
-              <div style={{fontSize:12,color:'var(--slate-500)',marginTop:6}}>{k.sub}</div>
-            </div>
-          ))}
-        </div>
+        {/* KPI cards — hidden for CONTACT role */}
+        {!isContact && (
+          <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,marginBottom:28}}>
+            {[
+              { label: 'Current NAV', value: nav, sub: 'fair value' },
+              { label: 'Net MOIC', value: moic, sub: `${invested} invested` },
+              { label: 'Net IRR', value: irr, sub: 'since investment' },
+              { label: 'Amount invested', value: invested, sub: data.deal?.investDate ? new Date(data.deal.investDate).getFullYear().toString() : '' },
+            ].map(k => (
+              <div key={k.label} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,padding:'18px 20px'}}>
+                <div style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',marginBottom:10}}>{k.label}</div>
+                <div style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:30,color:'var(--ink)',lineHeight:1}}>{k.value}</div>
+                <div style={{fontSize:12,color:'var(--slate-500)',marginTop:6}}>{k.sub}</div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Tabs */}
         <div style={{display:'flex',borderBottom:'1px solid var(--border)',marginBottom:28}}>
@@ -129,8 +135,7 @@ export default function DealDashboard() {
                 ['Company', data.deal?.company],
                 ['Sector', data.deal?.sector || '—'],
                 ['Status', data.deal?.status],
-                ['Invested', invested],
-                ['Current value', nav],
+                ...(!isContact ? [['Invested', invested], ['Current value', nav]] : []),
                 ['DocuSign', data.docusignStatus || 'Not started'],
               ].map(([k,v]) => (
                 <div key={k as string} style={{display:'flex',justifyContent:'space-between',padding:'10px 0',borderBottom:'1px solid var(--border)'}}>

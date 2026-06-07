@@ -4,9 +4,8 @@ import { usePathname } from 'next/navigation'
 
 const nav = [
   { href: '/admin', label: 'Dashboard', icon: '⊞' },
-  { href: '/admin/investors', label: 'Investors', icon: '👤' },
+  { href: '/admin/contacts', label: 'Contacts', icon: '👤' },
   { href: '/admin/deals', label: 'Deals', icon: '🏢' },
-  { href: '/admin/users', label: 'Admin users', icon: '🔑' },
 ]
 
 export default function AdminSidebar({ user }: { user: any }) {

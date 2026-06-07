@@ -24,6 +24,7 @@ model User {
 
 enum Role {
   LP
+  CONTACT
   ADMIN
   SUPER_ADMIN
 }

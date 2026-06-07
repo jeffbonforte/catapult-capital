@@ -37,6 +37,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       email: data.email,
       company: data.company ?? null,
       isLocked: data.isLocked,
+      ...(data.role ? { role: data.role } : {}),
     }
   })
   return NextResponse.json(user)
