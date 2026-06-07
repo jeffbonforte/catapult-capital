@@ -26,11 +26,25 @@ export default function DealDetail({ deal }: { deal: any }) {
     e.preventDefault()
     if (!docFile) return
     setUploading(true)
-    const fd = new FormData()
-    fd.append('file', docFile)
-    fd.append('title', docTitle)
-    fd.append('type', docType)
-    await fetch(`/api/admin/deals/${deal.id}/documents`, { method: 'POST', body: fd })
+
+    // Step 1: get a presigned URL from our API
+    const presignRes = await fetch(`/api/admin/deals/${deal.id}/documents/presign`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: docFile.name, contentType: docFile.type || 'application/octet-stream' })
+    })
+    const { url, key, fileUrl } = await presignRes.json()
+
+    // Step 2: upload directly to R2 (bypasses Vercel's 4.5MB limit)
+    await fetch(url, { method: 'PUT', body: docFile, headers: { 'Content-Type': docFile.type || 'application/octet-stream' } })
+
+    // Step 3: record the document in the database
+    await fetch(`/api/admin/deals/${deal.id}/documents`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: docTitle, type: docType, fileUrl, fileKey: key, fileSize: docFile.size })
+    })
+
     setUploading(false); setDocTitle(''); setDocFile(null)
     setMsg('Document uploaded.'); setTimeout(() => { setMsg(''); window.location.reload() }, 1000)
   }
