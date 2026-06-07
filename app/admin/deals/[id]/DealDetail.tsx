@@ -1,9 +1,18 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const DOC_TYPES = ['RESEARCH_MEMO','INVESTMENT_DECK','LEGAL_DOC','UPDATE_REPORT','OTHER']
 
+function fmtSize(bytes: number): string {
+  if (!bytes) return '—'
+  if (bytes >= 1_000_000_000) return `${(bytes / 1_000_000_000).toFixed(1)} GB`
+  if (bytes >= 1_000_000) return `${(bytes / 1_000_000).toFixed(1)} MB`
+  return `${(bytes / 1_000).toFixed(0)} KB`
+}
+
 export default function DealDetail({ deal }: { deal: any }) {
+  const router = useRouter()
   const [tab, setTab] = useState<'overview'|'documents'|'updates'|'settings'>('overview')
   const [msg, setMsg] = useState('')
 
@@ -46,7 +55,7 @@ export default function DealDetail({ deal }: { deal: any }) {
     })
 
     setUploading(false); setDocTitle(''); setDocFile(null)
-    setMsg('Document uploaded.'); setTimeout(() => { setMsg(''); window.location.reload() }, 1000)
+    setMsg('Document uploaded.'); router.refresh(); setTimeout(() => setMsg(''), 2000)
   }
 
   async function postUpdate(e: React.FormEvent) {
@@ -208,7 +217,7 @@ export default function DealDetail({ deal }: { deal: any }) {
                         {d.type.replace(/_/g,' ')}
                       </span>
                     </td>
-                    <td style={{padding:'12px 16px',fontSize:13,color:'var(--slate-500)',fontFamily:'var(--font-mono)'}}>{d.fileSize ? `${(d.fileSize/1024).toFixed(0)} KB` : '—'}</td>
+                    <td style={{padding:'12px 16px',fontSize:13,color:'var(--slate-500)',fontFamily:'var(--font-mono)'}}>{fmtSize(d.fileSize)}</td>
                     <td style={{padding:'12px 16px',fontSize:13,fontFamily:'var(--font-mono)'}}>{d._count.views}</td>
                     <td style={{padding:'12px 16px',fontSize:13,color:'var(--slate-500)'}}>{new Date(d.createdAt).toLocaleDateString()}</td>
                   </tr>
