@@ -12,7 +12,8 @@ export default function LoginPage() {
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true); setError('')
-    await fetch('/api/auth/magic-link', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email }) })
+    const res = await fetch('/api/auth/magic-link', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email }) })
+    if (!res.ok) { setError('Failed to send login link. Please try again or contact support.'); setLoading(false); return }
     setSent(true); setLoading(false)
   }
 
@@ -60,6 +61,7 @@ export default function LoginPage() {
                 <label style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:6}}>Work email</label>
                 <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="jane@institution.com" type="email" required
                   style={{width:'100%',boxSizing:'border-box',padding:'11px 13px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:15,fontFamily:'var(--font-sans)',outline:'none'}} />
+                {error && <p style={{color:'var(--loss)',fontSize:13,marginTop:8}}>{error}</p>}
                 <button type="submit" disabled={loading}
                   style={{marginTop:16,width:'100%',padding:'13px',background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,fontFamily:'var(--font-sans)',fontWeight:600,fontSize:15,cursor:'pointer'}}>
                   {loading ? 'Sending…' : 'Send login link'}

@@ -12,7 +12,14 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ success: true })
 
   const token = await createMagicLink(email.toLowerCase())
-  if (token) await sendMagicLink(user.email, user.name, token)
+  if (token) {
+    try {
+      await sendMagicLink(user.email, user.name, token)
+    } catch (err) {
+      console.error('Failed to send magic link email:', err)
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+    }
+  }
 
   return NextResponse.json({ success: true })
 }

@@ -19,7 +19,7 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
   async function saveProfile(e: React.FormEvent) {
     e.preventDefault()
     setSaving(true)
-    await fetch(`/api/admin/contacts/${contact.id}`, {
+    await fetch(`/api/admin/investors/${contact.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...editForm, isLocked, role: editForm.role })
@@ -32,7 +32,7 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
 
   async function toggleLock() {
     const next = !isLocked
-    await fetch(`/api/admin/contacts/${contact.id}`, {
+    await fetch(`/api/admin/investors/${contact.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: contact.name, email: contact.email, company: contact.company, isLocked: next })
@@ -43,12 +43,12 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
   }
 
   async function deleteUser() {
-    await fetch(`/api/admin/contacts/${contact.id}`, { method: 'DELETE' })
+    await fetch(`/api/admin/investors/${contact.id}`, { method: 'DELETE' })
     window.location.href = '/admin/contacts'
   }
 
   async function sendMagicLink() {
-    const res = await fetch(`/api/admin/contacts/${contact.id}/magic-link`, { method: 'POST' })
+    const res = await fetch(`/api/admin/investors/${contact.id}/magic-link`, { method: 'POST' })
     const data = await res.json()
     setMagicLink(data.link || '')
     setLinkSent(true)
@@ -57,7 +57,7 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
   async function addAccess(e: React.FormEvent) {
     e.preventDefault()
     setSaving(true)
-    await fetch(`/api/admin/contacts/${contact.id}/access`, {
+    await fetch(`/api/admin/investors/${contact.id}/access`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -73,7 +73,7 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
   }
 
   async function updateAccess(dealId: string, updates: any) {
-    await fetch(`/api/admin/contacts/${contact.id}/access`, {
+    await fetch(`/api/admin/investors/${contact.id}/access`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ dealId, ...updates })
