@@ -155,30 +155,34 @@ export default function DealDetail({ deal }: { deal: any }) {
         <div>
           {/* Upload form */}
           <div style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,padding:24,marginBottom:20}}>
-            <h3 style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:17,margin:'0 0 16px'}}>Upload document</h3>
-            <form onSubmit={uploadDoc} style={{display:'grid',gridTemplateColumns:'1fr 1fr auto',gap:12,alignItems:'end'}}>
-              <div>
-                <label style={{fontSize:11,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:4}}>Title</label>
-                <input value={docTitle} onChange={e => setDocTitle(e.target.value)} required placeholder="Q1 2026 LP Letter"
-                  style={{width:'100%',boxSizing:'border-box',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:14,fontFamily:'var(--font-sans)'}} />
+            <h3 style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:17,margin:'0 0 20px'}}>Upload document</h3>
+            <form onSubmit={uploadDoc}>
+              <div style={{marginBottom:16}}>
+                <label style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:6}}>File</label>
+                <input type="file" required onChange={e => {
+                  const f = e.target.files?.[0] || null
+                  setDocFile(f)
+                  if (f && !docTitle) setDocTitle(f.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '))
+                }} style={{fontSize:14,fontFamily:'var(--font-sans)'}} />
               </div>
-              <div>
-                <label style={{fontSize:11,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:4}}>Type</label>
-                <select value={docType} onChange={e => setDocType(e.target.value)}
-                  style={{width:'100%',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:14,fontFamily:'var(--font-sans)'}}>
-                  {DOC_TYPES.map(t => <option key={t} value={t}>{t.replace(/_/g,' ')}</option>)}
-                </select>
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:20}}>
+                <div>
+                  <label style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:6}}>Title</label>
+                  <input value={docTitle} onChange={e => setDocTitle(e.target.value)} required placeholder="Q1 2026 LP Letter"
+                    style={{width:'100%',boxSizing:'border-box',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:14,fontFamily:'var(--font-sans)'}} />
+                </div>
+                <div>
+                  <label style={{fontSize:12,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:6}}>Type</label>
+                  <select value={docType} onChange={e => setDocType(e.target.value)}
+                    style={{width:'100%',boxSizing:'border-box',padding:'9px 11px',border:'1px solid var(--border-strong)',borderRadius:6,fontSize:14,fontFamily:'var(--font-sans)'}}>
+                    {DOC_TYPES.map(t => <option key={t} value={t}>{t.replace(/_/g,' ')}</option>)}
+                  </select>
+                </div>
               </div>
-              <div>
-                <label style={{fontSize:11,fontWeight:600,color:'var(--slate-600)',display:'block',marginBottom:4}}>File</label>
-                <input type="file" required onChange={e => setDocFile(e.target.files?.[0] || null)} />
-              </div>
-              <div style={{gridColumn:'1/-1'}}>
-                <button type="submit" disabled={uploading}
-                  style={{background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,padding:'10px 20px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:14}}>
-                  {uploading ? 'Uploading…' : 'Upload'}
-                </button>
-              </div>
+              <button type="submit" disabled={uploading}
+                style={{background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,padding:'10px 20px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:14}}>
+                {uploading ? 'Uploading…' : 'Upload'}
+              </button>
             </form>
           </div>
 
