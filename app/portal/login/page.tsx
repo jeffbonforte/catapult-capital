@@ -28,7 +28,7 @@ export default function LoginPage() {
   return (
     <div style={{minHeight:'100vh',background:'linear-gradient(160deg,#0E2E54,#0B2545)',display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>
       <div style={{background:'#fff',borderRadius:12,padding:40,width:'100%',maxWidth:420,boxShadow:'0 24px 64px rgba(11,37,69,.25)'}}>
-        <img src="/assets/catapult-logo-horizontal.png" alt="Catapult Capital" style={{height:26,marginBottom:32}} />
+        <a href="/"><img src="/assets/catapult-logo-horizontal.png" alt="Catapult Capital" style={{height:26,marginBottom:32,display:'block'}} /></a>
 
         {sent ? (
           <div style={{textAlign:'center',padding:'16px 0'}}>
