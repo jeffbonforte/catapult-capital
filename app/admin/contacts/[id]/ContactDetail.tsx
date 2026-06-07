@@ -88,7 +88,7 @@ export default function ContactDetail({ contact, deals }: { contact: any, deals:
   return (
     <div style={{padding:32,maxWidth:1000,margin:'0 auto'}}>
       <div style={{marginBottom:24}}>
-        <a href="/admin/contacts" style={{fontSize:13,color:'var(--slate-600)',textDecoration:'none'}}>← Back to investors</a>
+        <a href="/admin/contacts" style={{fontSize:13,color:'var(--slate-600)',textDecoration:'none'}}>← Back to contacts</a>
       </div>
 
       {msg && <div style={{background:'var(--gain-bg)',border:'1px solid var(--gain)',borderRadius:6,padding:'10px 14px',marginBottom:16,fontSize:13,color:'var(--gain)'}}>{msg}</div>}
