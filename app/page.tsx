@@ -46,6 +46,7 @@ interface Company {
   year: string;
   status: 'active' | 'exited';
   ticker?: string;
+  deepDive?: string;
 }
 
 /* ---- Nav ---- */
@@ -205,10 +206,12 @@ function Portfolio({ onSelect }: { onSelect: (c: Company) => void }) {
     {
       co: 'Genalyte', sector: 'Life Sciences / Diagnostics', status: 'active', year: '2025',
       desc: 'Developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the philosophy to "move data, not blood," delivering onsite, real-time results for over 85% of standard primary care blood panels.',
+      deepDive: '/insights/genalyte',
     },
     {
       co: 'Cellanome', sector: 'Life Sciences / Multi-omics', status: 'active', year: '2024',
       desc: 'Building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution.',
+      deepDive: '/insights/cellanome',
     },
     {
       co: 'JibJab', sector: 'Digital Media', status: 'exited', moic: '4.4×', year: '2018',
@@ -241,10 +244,13 @@ function Portfolio({ onSelect }: { onSelect: (c: Company) => void }) {
                 <div className="desc">{c.desc}</div>
               </div>
               <div className="foot">
-                {c.moic
-                  ? <span className="moic">{c.moic} MOIC</span>
-                  : <span style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:13,color:'var(--navy-600)'}}>Active</span>
-                }
+                <div style={{display:'flex',alignItems:'center',gap:10}}>
+                  {c.moic
+                    ? <span className="moic">{c.moic} MOIC</span>
+                    : <span style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:13,color:'var(--navy-600)'}}>Active</span>
+                  }
+                  {c.deepDive && <span style={{fontSize:11,fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.1em',color:'var(--navy-400)'}}>Deep dive ↗</span>}
+                </div>
                 <span className="year">
                   {c.status === 'exited' ? `Acq. ${c.year}` : `Since ${c.year}`}
                 </span>
@@ -378,6 +384,7 @@ function Team() {
 /* ---- News ---- */
 function News() {
   const items = [
+    { pub: 'Catapult Capital', title: 'Moving the Lab to the Patient: Why We Invested in Genalyte', date: '2025', href: '/insights/genalyte' },
     { pub: 'Bloomberg', title: 'SpaceX Investor Powerlaw Debuts on Nasdaq as IPO Race Heats Up', date: 'May 27, 2026' },
     { pub: 'FinStrat Management', title: 'Building the Future of Crypto Trading with Rick Marini of Rails', date: 'May 26, 2026' },
     { pub: 'Second In Command Podcast', title: "Grindr's $2 Billion IPO: Rebuilding Culture & Tech | Rick Marini", date: 'April 16, 2026' },
@@ -395,17 +402,27 @@ function News() {
           <h2>In the press.</h2>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:0,border:'1px solid var(--border)'}}>
-          {items.map((item, i) => (
-            <div key={i} style={{
-              padding:'22px 26px',borderBottom: i < items.length - 2 ? '1px solid var(--border)' : 'none',
+          {items.map((item, i) => {
+            const inner = (
+              <>
+                <div style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.12em',fontSize:10,color:'var(--navy-600)',marginBottom:8}}>{item.pub}</div>
+                <div style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:16,lineHeight:1.4,color:'var(--ink)',marginBottom:8}}>{item.title}</div>
+                <div style={{fontSize:12,color:'var(--slate-400)',fontFamily:'var(--font-mono)'}}>{item.date}</div>
+              </>
+            );
+            const style = {
+              padding:'22px 26px',
+              borderBottom: i < items.length - 2 ? '1px solid var(--border)' : 'none',
               borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
-              background:'var(--white)'
-            }}>
-              <div style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.12em',fontSize:10,color:'var(--navy-600)',marginBottom:8}}>{item.pub}</div>
-              <div style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:16,lineHeight:1.4,color:'var(--ink)',marginBottom:8}}>{item.title}</div>
-              <div style={{fontSize:12,color:'var(--slate-400)',fontFamily:'var(--font-mono)'}}>{item.date}</div>
-            </div>
-          ))}
+              background:'var(--white)',
+              display:'block' as const,
+              textDecoration:'none',
+              transition:'background .15s',
+            };
+            return item.href
+              ? <a key={i} href={item.href} style={style} onMouseEnter={e => (e.currentTarget.style.background='var(--navy-50)')} onMouseLeave={e => (e.currentTarget.style.background='var(--white)')}>{inner}</a>
+              : <div key={i} style={style}>{inner}</div>;
+          })}
         </div>
       </div>
     </section>
@@ -519,7 +536,15 @@ function CompanyModal({ company, onClose }: { company: Company | null; onClose: 
             </div>
           ))}
         </div>
-        <button className="btn btn-secondary" style={{marginTop:8}} onClick={onClose}>Close</button>
+        <div style={{display:'flex',gap:10,marginTop:8,flexWrap:'wrap'}}>
+          {company.deepDive && (
+            <a href={company.deepDive}
+               style={{fontFamily:'var(--font-sans)',fontWeight:600,fontSize:14,color:'#fff',background:'var(--navy-600)',border:'1px solid transparent',borderRadius:6,padding:'10px 18px',textDecoration:'none',display:'inline-flex',alignItems:'center',gap:6}}>
+              Investment deep dive <IconArrowUpRight size={14} />
+            </a>
+          )}
+          <button className="btn btn-secondary" onClick={onClose}>Close</button>
+        </div>
       </div>
     </div>
   );
