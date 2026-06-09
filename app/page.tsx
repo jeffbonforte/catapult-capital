@@ -384,6 +384,7 @@ function Team() {
 /* ---- News ---- */
 function News() {
   const items = [
+    { pub: 'Catapult Capital', title: 'Cellanome: The Platform for Living Biology', date: '2026', href: '/insights/cellanome' },
     { pub: 'Catapult Capital', title: 'Moving the Lab to the Patient: Why We Invested in Genalyte', date: '2025', href: '/insights/genalyte' },
     { pub: 'Bloomberg', title: 'SpaceX Investor Powerlaw Debuts on Nasdaq as IPO Race Heats Up', date: 'May 27, 2026' },
     { pub: 'FinStrat Management', title: 'Building the Future of Crypto Trading with Rick Marini of Rails', date: 'May 26, 2026' },
