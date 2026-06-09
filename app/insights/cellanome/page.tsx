@@ -241,8 +241,7 @@ export default function CellanomePage() {
             {team.map(p => (
               <div key={p.nm} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
                 <div style={{aspectRatio:'4/3',overflow:'hidden',background:'var(--navy-50)'}}>
-                  <img src={p.img} alt={p.nm} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top'}}
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                  <img src={p.img} alt={p.nm} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top'}} />
                 </div>
                 <div style={{padding:'18px 20px'}}>
                   <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,marginBottom:4}}>{p.nm}</div>
