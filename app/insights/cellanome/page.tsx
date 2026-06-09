@@ -57,9 +57,9 @@ export default function CellanomePage() {
   ]
 
   const team = [
-    { nm: 'Omead Ostadan', role: 'President and CEO', desc: 'Former SVP of Products, Marketing and Strategic Planning at Illumina. Built the product organization that commercialized Illumina\'s most important platforms during its defining years of global expansion. Now leading Cellanome from stealth through commercialization.' },
-    { nm: 'Mostafa Ronaghi', role: 'Co-Founder and Executive Board Member', desc: 'Inventor of pyrosequencing and former CTO of Illumina during its most formative growth period. Co-founded GRAIL. One of the most prolific inventors in the history of life sciences tools, with a track record of building platforms that define new fields.' },
-    { nm: 'Jay Flatley', role: 'Chairman', desc: 'CEO of Illumina for nearly two decades. Built the commercial engine, channel relationships, and scientific credibility that turned sequencing into universal biology infrastructure, growing revenue from $200M to over $4B while costs fell more than 10,000×.' },
+    { nm: 'Omead Ostadan', role: 'President and CEO', img: '/assets/cellanome-omead-ostadan.jpg', desc: 'Former SVP of Products, Marketing and Strategic Planning at Illumina. Built the product organization that commercialized Illumina\'s most important platforms during its defining years of global expansion. Now leading Cellanome from stealth through commercialization.' },
+    { nm: 'Mostafa Ronaghi', role: 'Co-Founder and Executive Board Member', img: '/assets/cellanome-mostafa-ronaghi.jpg', desc: 'Inventor of pyrosequencing and former CTO of Illumina during its most formative growth period. Co-founded GRAIL. One of the most prolific inventors in the history of life sciences tools, with a track record of building platforms that define new fields.' },
+    { nm: 'Jay Flatley', role: 'Chairman', img: '/assets/cellanome-jay-flatley.jpg', desc: 'CEO of Illumina for nearly two decades. Built the commercial engine, channel relationships, and scientific credibility that turned sequencing into universal biology infrastructure, growing revenue from $200M to over $4B while costs fell more than 10,000×.' },
   ]
 
   const thesis = [
@@ -125,6 +125,11 @@ export default function CellanomePage() {
             <p>The result is a new class of experiment. A researcher can expose T cells to tumor targets and watch which ones kill, then sequence those specific cells immediately afterward. They can treat thousands of cancer cells with a drug, track which ones survive and how they behave, and read the molecular programs driving resistance. They can culture neurons for weeks and observe how individual cells respond to disease-associated conditions. Each of these experiments previously had no equivalent.</p>
           </div>
 
+          {/* Workflow diagram */}
+          <div style={{margin:'0 0 32px',borderRadius:8,overflow:'hidden',border:'1px solid var(--border)'}}>
+            <img src="/assets/cellanome-workflow.png" alt="Automated R3200 workflow: load cells, distribute to flow cell lanes, compute optimal cell selection, create micro 3D CCEs, enable longitudinal multimodal analysis" style={{width:'100%',display:'block'}} />
+          </div>
+
           {/* Stats callout */}
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden',marginBottom:32}}>
             {[
@@ -148,6 +153,12 @@ export default function CellanomePage() {
             <p>The R3200 is a fully integrated platform: instrument, consumables, and cloud software designed to work together as a single system. Researchers load their cells; the platform handles isolation, imaging, perturbation, and sequencing in one run, with all data linked through a single structured data object. The commercial model this creates — instrument placements driving recurring consumable pull-through — is the same model the founding team built at Illumina.</p>
           </div>
 
+          {/* R3200 instrument photo */}
+          <div style={{margin:'0 0 32px',textAlign:'center',background:'var(--paper)',borderRadius:8,padding:'32px',border:'1px solid var(--border)'}}>
+            <img src="/assets/cellanome-r3200.jpg" alt="The Cellanome R3200 instrument" style={{maxWidth:'100%',maxHeight:360,objectFit:'contain',display:'inline-block'}} />
+            <div style={{fontSize:12,color:'var(--slate-400)',marginTop:12,fontFamily:'var(--font-sans)'}}>The Cellanome R3200: fully integrated instrument, consumables, and cloud software.</div>
+          </div>
+
           {/* Quote */}
           <div style={{borderLeft:'3px solid var(--navy-600)',paddingLeft:28,margin:'0 0 0'}}>
             <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:18,lineHeight:1.65,color:'var(--ink)',margin:'0 0 12px',fontStyle:'italic'}}>
@@ -163,6 +174,12 @@ export default function CellanomePage() {
         <div style={{marginBottom:64}}>
           <SectionLabel>Applications</SectionLabel>
           <H2>The Questions Biology Has Always Wanted to Ask</H2>
+
+          {/* Platform diagram */}
+          <div style={{margin:'0 0 28px',borderRadius:8,overflow:'hidden',border:'1px solid var(--border)'}}>
+            <img src="/assets/cellanome-platform.png" alt="Cellanome platform: cell inputs + perturbations + assays = models for disease research across neurology, autoimmunity, aging, and oncology" style={{width:'100%',display:'block'}} />
+          </div>
+
           <div style={{display:'grid',gap:16}}>
             {[
               { area: 'Immuno-oncology', body: 'Researchers can watch T cells engage and kill tumor cells, then sequence those specific cells to identify the transcriptional programs that correlate with cytotoxic potency. The platform links functional killing behavior directly to molecular identity, generating the data needed to optimize CAR-T therapies and predict which patients will respond to checkpoint inhibitors.' },
@@ -222,10 +239,16 @@ export default function CellanomePage() {
           </p>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:20}}>
             {team.map(p => (
-              <div key={p.nm} style={{padding:'22px',background:'#fff',border:'1px solid var(--border)',borderRadius:8}}>
-                <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,marginBottom:4}}>{p.nm}</div>
-                <div style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.1em',fontSize:10,color:'var(--navy-600)',marginBottom:12}}>{p.role}</div>
-                <div style={{fontSize:13.5,lineHeight:1.65,color:'var(--slate-600)'}}>{p.desc}</div>
+              <div key={p.nm} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
+                <div style={{aspectRatio:'4/3',overflow:'hidden',background:'var(--navy-50)'}}>
+                  <img src={p.img} alt={p.nm} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top'}}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                </div>
+                <div style={{padding:'18px 20px'}}>
+                  <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,marginBottom:4}}>{p.nm}</div>
+                  <div style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.1em',fontSize:10,color:'var(--navy-600)',marginBottom:10}}>{p.role}</div>
+                  <div style={{fontSize:13.5,lineHeight:1.65,color:'var(--slate-600)'}}>{p.desc}</div>
+                </div>
               </div>
             ))}
           </div>
