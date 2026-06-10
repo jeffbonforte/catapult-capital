@@ -94,7 +94,7 @@ export default function DealsPage() {
             <div className="page-intro">
               <div>
                 <span className="eyebrow" style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.14em',fontSize:11,color:'var(--slate-500)',display:'block',marginBottom:6}}>Your investments</span>
-                <h2 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:30,margin:0}}>
+                <h2 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:'clamp(24px,5vw,30px)',margin:0}}>
                   {loading ? 'Loading…' : `Welcome back, ${user?.name?.split(' ')[0] || ''}`}
                 </h2>
               </div>
@@ -118,14 +118,14 @@ export default function DealsPage() {
                   }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.borderColor='var(--navy-400)';(e.currentTarget as HTMLElement).style.boxShadow='0 4px 16px rgba(11,37,69,.08)'}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.borderColor='var(--border)';(e.currentTarget as HTMLElement).style.boxShadow='none'}}>
-                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}}>
-                      <div>
+                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexWrap:'wrap',gap:16}}>
+                      <div style={{minWidth:0,flex:'1 1 240px'}}>
                         <div style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.12em',fontSize:10,color:'var(--slate-500)',marginBottom:6}}>{a.deal?.sector || 'Investment'}</div>
                         <div style={{fontFamily:'var(--font-serif)',fontSize:22,fontWeight:600,color:'var(--ink)'}}>{a.deal?.name || a.deal?.company}</div>
                         <div style={{fontSize:13,color:'var(--slate-600)',marginTop:4}}>{a.deal?.description}</div>
                       </div>
                       {a.amountInvested && user?.role !== 'CONTACT' && (
-                        <div style={{textAlign:'right',flexShrink:0,marginLeft:24}}>
+                        <div style={{textAlign:'right',flexShrink:0}}>
                           <div style={{fontFamily:'var(--font-mono)',fontSize:22,fontWeight:500,color:'var(--navy-700)'}}>${(a.amountInvested/1e6).toFixed(1)}M</div>
                           <div style={{fontSize:11,color:'var(--slate-500)',marginTop:2}}>invested</div>
                         </div>

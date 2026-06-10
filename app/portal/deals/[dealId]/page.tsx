@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 export const dynamic = 'force-dynamic'
 import Link from 'next/link'
+import '../../portal.css'
 
 function formatCurrency(n: number) {
   if (n >= 1e6) return `$${(n/1e6).toFixed(1)}M`
@@ -51,7 +52,7 @@ export default function DealDashboard() {
     <div style={{display:'flex',flexDirection:'column',minHeight:'100vh',background:'var(--paper)',fontFamily:'var(--font-sans)'}}>
       {/* Topbar */}
       <div style={{background:'rgba(255,255,255,.85)',backdropFilter:'blur(8px)',borderBottom:'1px solid var(--border)',position:'sticky',top:0,zIndex:40}}>
-        <div style={{maxWidth:1100,margin:'0 auto',height:66,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 32px'}}>
+        <div className="deal-topbar-inner">
           <div style={{display:'flex',alignItems:'center',gap:24}}>
             <a href="/"><img src="/assets/catapult-logo-horizontal.png" alt="Catapult Capital" style={{height:22,display:'block'}} /></a>
             <span style={{color:'var(--border)',fontSize:20}}>|</span>
@@ -61,22 +62,22 @@ export default function DealDashboard() {
         </div>
       </div>
 
-      <div style={{maxWidth:1100,margin:'0 auto',width:'100%',padding:'40px 32px',flex:1}}>
+      <div className="deal-main">
         {/* Header */}
         <div style={{marginBottom:32}}>
           <span style={{fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.14em',fontSize:11,color:'var(--slate-500)'}}>{data.deal?.sector}</span>
-          <h1 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:34,margin:'6px 0 4px'}}>{data.deal?.name}</h1>
+          <h1 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:'clamp(26px,5.5vw,34px)',margin:'6px 0 4px'}}>{data.deal?.name}</h1>
           <p style={{fontSize:14,color:'var(--slate-600)',margin:0}}>{data.deal?.description}</p>
         </div>
 
         {/* DocuSign banner */}
         {data.docusignStatus === 'pending' && (
-          <div style={{background:'#FFF8E7',border:'1px solid #F0D060',borderRadius:8,padding:'14px 20px',marginBottom:24,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <div className="deal-banner">
             <div>
               <div style={{fontWeight:600,fontSize:14}}>Action required — closing documents</div>
               <div style={{fontSize:13,color:'var(--slate-600)',marginTop:2}}>Please review and sign the subscription documents to complete your investment.</div>
             </div>
-            <button onClick={() => setTab('sign')} style={{background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,padding:'10px 18px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:13,whiteSpace:'nowrap',marginLeft:16}}>
+            <button onClick={() => setTab('sign')} style={{background:'var(--navy-600)',color:'#fff',border:'none',borderRadius:6,padding:'10px 18px',cursor:'pointer',fontFamily:'var(--font-sans)',fontWeight:600,fontSize:13,whiteSpace:'nowrap'}}>
               Sign documents →
             </button>
           </div>
@@ -84,7 +85,7 @@ export default function DealDashboard() {
 
         {/* KPI cards — hidden for CONTACT role */}
         {!isContact && (
-          <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,marginBottom:28}}>
+          <div className="deal-kpis">
             {[
               { label: 'Current NAV', value: nav, sub: 'fair value' },
               { label: 'Net MOIC', value: moic, sub: `${invested} invested` },
@@ -101,10 +102,10 @@ export default function DealDashboard() {
         )}
 
         {/* Tabs */}
-        <div style={{display:'flex',borderBottom:'1px solid var(--border)',marginBottom:28}}>
+        <div className="deal-tabs">
           {(['overview','documents','updates','sign'] as const).map(t => (
             <button key={t} onClick={() => setTab(t)} style={{
-              padding:'10px 20px',background:'none',border:'none',cursor:'pointer',
+              padding:'10px 20px',background:'none',border:'none',cursor:'pointer',whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'var(--font-sans)',fontWeight:600,fontSize:14,
               color: tab===t ? 'var(--navy-700)' : 'var(--slate-500)',
               borderBottom: tab===t ? '2px solid var(--navy-600)' : '2px solid transparent',
@@ -115,7 +116,7 @@ export default function DealDashboard() {
 
         {/* Tab content */}
         {tab === 'overview' && (
-          <div style={{display:'grid',gridTemplateColumns:'1.6fr 1fr',gap:16}}>
+          <div className="grid2">
             <div style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,padding:20}}>
               <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:18}}>
                 <h3 style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:17,margin:0}}>Investment value</h3>
@@ -148,7 +149,7 @@ export default function DealDashboard() {
         )}
 
         {tab === 'documents' && (
-          <div style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10,overflow:'hidden'}}>
+          <div className="table-scroll" style={{background:'#fff',border:'1px solid var(--border)',borderRadius:10}}>
             <table style={{width:'100%',borderCollapse:'collapse'}}>
               <thead>
                 <tr style={{background:'var(--paper)'}}>

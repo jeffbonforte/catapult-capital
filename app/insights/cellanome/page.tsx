@@ -80,7 +80,7 @@ export default function CellanomePage() {
       </div>
 
       {/* Hero header */}
-      <div style={{background:'linear-gradient(150deg,#0E2E54,#0B2545)',color:'#fff',padding:'72px 32px 64px'}}>
+      <div className="article-hero" style={{background:'linear-gradient(150deg,#0E2E54,#0B2545)',color:'#fff'}}>
         <div style={{maxWidth:760,margin:'0 auto'}}>
           <div style={{display:'flex',gap:10,marginBottom:24,flexWrap:'wrap'}}>
             {['Life Sciences','Active Investment','Platform Technology'].map(tag => (
@@ -97,7 +97,7 @@ export default function CellanomePage() {
         </div>
       </div>
 
-      <div style={{maxWidth:760,margin:'0 auto',padding:'64px 32px 120px'}}>
+      <div className="article-body">
 
         {/* Intro */}
         <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}}>
@@ -131,7 +131,7 @@ export default function CellanomePage() {
           </div>
 
           {/* Stats callout */}
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden',marginBottom:32}}>
+          <div className="ig3" style={{marginBottom:32}}>
             {[
               { v: '10,000+', l: 'CellCage Enclosures per flow cell lane' },
               { v: '<15 min', l: 'to form CCEs via light-guided polymerization' },
@@ -220,7 +220,7 @@ export default function CellanomePage() {
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
             The R3200 is installed at research institutions and commercial partners across the United States and Europe. Several early customers are actively publishing data generated on the instrument, providing an expanding body of independent scientific validation.
           </p>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
+          <div className="ig2" style={{gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
             {traction.map((t, i) => (
               <div key={i} style={{background:'#fff',padding:'22px 24px'}}>
                 <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,marginBottom:8,color:'var(--ink)'}}>{t.name}</div>
@@ -237,7 +237,7 @@ export default function CellanomePage() {
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
             At the center of the Cellanome story is a team that has built this kind of platform before. CEO Omead Ostadan, co-founder Mostafa Ronaghi, and chairman Jay Flatley spent the defining years of their careers at Illumina, where they scaled DNA sequencing from a specialized research technique into the universal infrastructure of modern biology. Under their leadership, Illumina grew from $200 million to over $4 billion in revenue while driving the cost of sequencing down more than 10,000×. They are applying the same playbook to cells.
           </p>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:20}}>
+          <div className="ig3" style={{gap:20,background:'none',border:'none',borderRadius:0,overflow:'visible'}}>
             {team.map(p => (
               <div key={p.nm} style={{background:'#fff',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
                 <div style={{aspectRatio:'4/3',overflow:'hidden',background:'var(--navy-50)'}}>
@@ -263,7 +263,7 @@ export default function CellanomePage() {
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
             At Catapult, we invest where the technology is demonstrably real, the potential is clear, and the timing is right. Cellanome clears all three.
           </p>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:20,marginBottom:32}}>
+          <div className="ig2" style={{marginBottom:32}}>
             {thesis.map(t => (
               <div key={t.n} style={{padding:'24px',background:'#fff',border:'1px solid var(--border)',borderRadius:8,borderTop:'3px solid var(--navy-600)'}}>
                 <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>

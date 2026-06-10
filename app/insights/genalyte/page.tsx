@@ -33,7 +33,7 @@ export default function GenalytePage() {
       </div>
 
       {/* Hero header */}
-      <div style={{background:'linear-gradient(150deg,#0E2E54,#0B2545)',color:'#fff',padding:'72px 32px 64px'}}>
+      <div className="article-hero" style={{background:'linear-gradient(150deg,#0E2E54,#0B2545)',color:'#fff'}}>
         <div style={{maxWidth:760,margin:'0 auto'}}>
           <div style={{display:'flex',gap:10,marginBottom:24,flexWrap:'wrap'}}>
             {['Life Sciences','Active Investment','Diagnostics'].map(tag => (
@@ -50,7 +50,7 @@ export default function GenalytePage() {
         </div>
       </div>
 
-      <div style={{maxWidth:760,margin:'0 auto',padding:'64px 32px 120px'}}>
+      <div className="article-body">
 
         {/* Intro */}
         <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}}>
@@ -84,7 +84,7 @@ export default function GenalytePage() {
           <H2>A system not built for the future it's heading toward.</H2>
 
           {/* Stats callout */}
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden',marginBottom:32}}>
+          <div className="ig3" style={{marginBottom:32}}>
             {[
               { v: '2×', l: 'Blood tests per patient in the last 7 years' },
               { v: '~30 min', l: 'Time to results with Merlin, vs. days today' },
@@ -135,7 +135,7 @@ export default function GenalytePage() {
             <p>When results are available during the visit, the physician and patient can discuss them immediately. Treatment can begin sooner. Medication can be adjusted sooner. Patients who might otherwise go undiagnosed or undertreated have a better chance of receiving care while they are still in front of a clinician.</p>
           </div>
 
-          <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}}>
+          <div className="ig2 ig2--tight">
             {['Diabetes','Thyroid disease','Anemia','Kidney and liver abnormalities','Cardiovascular risk','Autoimmune disease','Infectious disease','Oncology markers'].map(c => (
               <div key={c} style={{padding:'12px 16px',background:'#fff',border:'1px solid var(--border)',borderRadius:6,fontSize:14,color:'var(--slate-700)',display:'flex',alignItems:'center',gap:10}}>
                 <div style={{width:6,height:6,borderRadius:'50%',background:'var(--navy-600)',flexShrink:0}} />
@@ -158,7 +158,7 @@ export default function GenalytePage() {
         <div style={{marginBottom:64}}>
           <SectionLabel>Our Investment Thesis</SectionLabel>
           <H2>Why We Invested</H2>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:20,marginBottom:32}}>
+          <div className="ig2" style={{marginBottom:32}}>
             {thesis.map(t => (
               <div key={t.n} style={{padding:'24px',background:'#fff',border:'1px solid var(--border)',borderRadius:8,borderTop:'3px solid var(--navy-600)'}}>
                 <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:12}}>

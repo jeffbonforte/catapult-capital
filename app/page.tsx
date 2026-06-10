@@ -155,7 +155,7 @@ function Strategy() {
           <span className="eyebrow">Our approach</span>
           <h2>We invest where operating expertise compounds.</h2>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:28}}>
+        <div className="pillars">
           {pillars.map(({Ic, h, p}) => (
             <div className="feature" key={h}>
               <div className="ic"><Ic size={26} /></div>
@@ -480,7 +480,7 @@ function News() {
           <span className="eyebrow">News</span>
           <h2>In the press.</h2>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:0,border:'1px solid var(--border)'}}>
+        <div className="news-grid">
           {items.map((item, i) => {
             const inner = (
               <>
@@ -489,18 +489,9 @@ function News() {
                 <div style={{fontSize:12,color:'var(--slate-400)',fontFamily:'var(--font-mono)'}}>{item.date}</div>
               </>
             );
-            const style = {
-              padding:'22px 26px',
-              borderBottom: i < items.length - 2 ? '1px solid var(--border)' : 'none',
-              borderRight: i % 2 === 0 ? '1px solid var(--border)' : 'none',
-              background:'var(--white)',
-              display:'block' as const,
-              textDecoration:'none',
-              transition:'background .15s',
-            };
             return item.href
-              ? <a key={i} href={item.href} style={style} onMouseEnter={e => (e.currentTarget.style.background='var(--navy-50)')} onMouseLeave={e => (e.currentTarget.style.background='var(--white)')}>{inner}</a>
-              : <div key={i} style={style}>{inner}</div>;
+              ? <a key={i} className="news-cell" href={item.href}>{inner}</a>
+              : <div key={i} className="news-cell">{inner}</div>;
           })}
         </div>
       </div>

@@ -92,4 +92,38 @@ table.data tbody tr:hover{background:var(--navy-50)}
 @keyframes pfade{from{opacity:0}}
 @keyframes prise{from{opacity:0;transform:translateY(10px)}}
 
-@media (max-width:900px){.kpis{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.sidebar{width:72px}.sb-item span,.sb-logo,.sb-section .lbl,.sb-foot .nm,.sb-foot .sub{display:none}}
+/* deal detail page */
+.deal-topbar-inner{max-width:1100px;margin:0 auto;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.deal-main{max-width:1100px;margin:0 auto;width:100%;padding:40px 32px;flex:1}
+.deal-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.deal-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto;scrollbar-width:none}
+.deal-tabs::-webkit-scrollbar{display:none}
+.deal-banner{background:#FFF8E7;border:1px solid #F0D060;border-radius:8px;padding:14px 20px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll table{min-width:600px}
+
+@media (max-width:900px){.kpis{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.sidebar{width:72px}.sb-item span:not(.ic),.sb-logo,.sb-section .lbl,.sb-foot .nm,.sb-foot .sub{display:none}.deal-kpis{grid-template-columns:1fr 1fr}}
+
+@media (max-width:640px){
+  /* sidebar becomes a top bar */
+  .app{flex-direction:column;height:auto;min-height:100vh;overflow:visible}
+  .sidebar{width:100%;flex-direction:row;align-items:center;padding:10px 16px;gap:4px}
+  .sb-logo{display:block;padding:0;border:0;margin-right:auto}
+  .sb-logo img{height:18px}
+  .sb-section{display:flex;align-items:center;padding:0;gap:2px}
+  .sb-item{padding:9px 10px;margin:0}
+  .sb-foot{margin:0;padding:0 0 0 10px;border:0}
+  .sb-foot .sub{display:block;font-size:12px}
+  .main{overflow:visible}
+  .content{overflow:visible;padding:20px 16px}
+  .page-intro{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:18px}
+  .page-intro h2{font-size:24px}
+  .topbar{padding:0 16px;height:56px}
+  .topbar h1{font-size:19px}
+  .kpis{gap:10px}
+  .kpi .val{font-size:24px}
+  /* deal detail */
+  .deal-topbar-inner{padding:0 16px}
+  .deal-main{padding:24px 16px}
+  .deal-kpis{gap:10px}
+}
