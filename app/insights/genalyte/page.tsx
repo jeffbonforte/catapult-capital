@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ScrollFx from '../../ScrollFx'
 import '../../website.css'
 
 export const metadata = {
@@ -24,6 +25,7 @@ export default function GenalytePage() {
 
   return (
     <div style={{minHeight:'100vh',background:'var(--paper)',fontFamily:'var(--font-sans)'}}>
+      <ScrollFx />
       {/* Top bar */}
       <div style={{background:'rgba(255,255,255,.92)',backdropFilter:'blur(8px)',borderBottom:'1px solid var(--border)',position:'sticky',top:0,zIndex:40}}>
         <div style={{maxWidth:'var(--container)',margin:'0 auto',padding:'0 32px',height:66,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
@@ -53,13 +55,13 @@ export default function GenalytePage() {
       <div className="article-body">
 
         {/* Intro */}
-        <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}}>
+        <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}} data-reveal="1">
           <p>We are excited to announce our investment in Genalyte, a company we believe has the potential to change one of the most important, and still surprisingly inefficient, parts of healthcare: diagnostic blood testing.</p>
           <p>For decades, the standard model has been to draw blood in one location, ship it to a centralized laboratory, process the sample, and then send the result back to the physician days later. That model has served healthcare for a long time, but it creates friction at exactly the moment when speed and clarity matter most. Patients leave the office without answers. Physicians make decisions with incomplete information. Follow-up calls are missed. Additional visits are required. Diagnoses are delayed. Treatment is postponed.</p>
         </div>
 
         {/* The Vision */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Vision</SectionLabel>
           <H2>Move data, not blood.</H2>
 
@@ -79,7 +81,7 @@ export default function GenalytePage() {
         </div>
 
         {/* The Opportunity */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Opportunity</SectionLabel>
           <H2>A system not built for the future it's heading toward.</H2>
 
@@ -104,7 +106,7 @@ export default function GenalytePage() {
         </div>
 
         {/* The Platform */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Platform</SectionLabel>
           <H2>Merlin and Maverick.</H2>
           <div style={{display:'grid',gap:16,marginBottom:32}}>
@@ -120,7 +122,7 @@ export default function GenalytePage() {
         </div>
 
         {/* What It Means for Patients */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Clinical Impact</SectionLabel>
           <H2>The most compelling part is what it means for patients.</H2>
 
@@ -146,7 +148,7 @@ export default function GenalytePage() {
         </div>
 
         {/* Underserved Communities */}
-        <div style={{marginBottom:64,background:'var(--navy-50)',border:'1px solid var(--navy-100)',borderRadius:10,padding:'32px'}}>
+        <div style={{marginBottom:64,background:'var(--navy-50)',border:'1px solid var(--navy-100)',borderRadius:10,padding:'32px'}} data-reveal="1">
           <SectionLabel>Access</SectionLabel>
           <H2>Expanding care in underserved communities.</H2>
           <div style={{fontSize:16,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300}}>
@@ -155,7 +157,7 @@ export default function GenalytePage() {
         </div>
 
         {/* Investment Thesis */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Our Investment Thesis</SectionLabel>
           <H2>Why We Invested</H2>
           <div className="ig2" style={{marginBottom:32}}>

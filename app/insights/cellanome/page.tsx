@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ScrollFx from '../../ScrollFx'
 import '../../website.css'
 
 export const metadata = {
@@ -71,6 +72,7 @@ export default function CellanomePage() {
 
   return (
     <div style={{minHeight:'100vh',background:'var(--paper)',fontFamily:'var(--font-sans)'}}>
+      <ScrollFx />
       {/* Top bar */}
       <div style={{background:'rgba(255,255,255,.92)',backdropFilter:'blur(8px)',borderBottom:'1px solid var(--border)',position:'sticky',top:0,zIndex:40}}>
         <div style={{maxWidth:'var(--container)',margin:'0 auto',padding:'0 32px',height:66,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
@@ -100,13 +102,13 @@ export default function CellanomePage() {
       <div className="article-body">
 
         {/* Intro */}
-        <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}}>
+        <div style={{fontSize:17,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:64}} data-reveal="1">
           <p>One of the biggest technical limitations in cell biology has been the inability to measure how cells behave, and how they interact with neighboring cells, longitudinally and at scale. That limitation has forced researchers into an unwelcome tradeoff: using terminal assays that capture single cells across hundreds of thousands to millions of observations, but only at a single frozen point in time. The result is a limited view of cell biology, stripped of the context of time and cellular interaction.</p>
           <p>Cellanome was founded to develop, commercialize, and scale platform technologies that enable longitudinal, multimodal observation of cells and multicellular interactions, at the scale of thousands to hundreds of thousands of cells at a time. The technology has the potential to fundamentally transform our understanding of cell biology, and of biology more broadly.</p>
         </div>
 
         {/* The Problem */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Problem</SectionLabel>
           <H2>The Cost of Working Blind</H2>
           <div style={{fontSize:16,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300}}>
@@ -117,7 +119,7 @@ export default function CellanomePage() {
         </div>
 
         {/* The Innovation */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Innovation</SectionLabel>
           <H2>CellCage Enclosure Technology: Cells Stay Alive</H2>
           <div style={{fontSize:16,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:32}}>
@@ -146,7 +148,7 @@ export default function CellanomePage() {
         </div>
 
         {/* The Platform */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Platform</SectionLabel>
           <H2>An Integrated System, End to End</H2>
           <div style={{fontSize:16,lineHeight:1.75,color:'var(--slate-700)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:32}}>
@@ -171,7 +173,7 @@ export default function CellanomePage() {
         </div>
 
         {/* Applications */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Applications</SectionLabel>
           <H2>The Questions Biology Has Always Wanted to Ask</H2>
 
@@ -196,7 +198,7 @@ export default function CellanomePage() {
         </div>
 
         {/* Published Validation */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Published Validation</SectionLabel>
           <H2>The Science Is on Record</H2>
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
@@ -214,7 +216,7 @@ export default function CellanomePage() {
         </div>
 
         {/* Traction */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Traction</SectionLabel>
           <H2>Where the Platform Is Running</H2>
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
@@ -231,7 +233,7 @@ export default function CellanomePage() {
         </div>
 
         {/* Team */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>The Team</SectionLabel>
           <H2>The People Who Built the Genomics Era</H2>
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>
@@ -257,7 +259,7 @@ export default function CellanomePage() {
         </div>
 
         {/* Investment Thesis */}
-        <div style={{marginBottom:64}}>
+        <div style={{marginBottom:64}} data-reveal="1">
           <SectionLabel>Our Investment Thesis</SectionLabel>
           <H2>Why We Invested</H2>
           <p style={{fontSize:16,lineHeight:1.75,color:'var(--slate-600)',fontFamily:'var(--font-serif)',fontWeight:300,marginBottom:28}}>

@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
+import ScrollFx from './ScrollFx';
 import './website.css';
 
 /* ---- Icons ---- */
@@ -151,13 +152,13 @@ function Strategy() {
   return (
     <section className="section section--paper" id="strategy">
       <div className="wrap">
-        <div className="section-head">
+        <div className="section-head" data-reveal="1">
           <span className="eyebrow">Our approach</span>
           <h2>We invest where operating expertise compounds.</h2>
         </div>
         <div className="pillars">
-          {pillars.map(({Ic, h, p}) => (
-            <div className="feature" key={h}>
+          {pillars.map(({Ic, h, p}, i) => (
+            <div className="feature" key={h} data-reveal={String((i % 2) + 1)}>
               <div className="ic"><Ic size={26} /></div>
               <h3>{h}</h3>
               <p>{p}</p>
@@ -180,8 +181,8 @@ function StatBand() {
   return (
     <section className="section section--white">
       <div className="wrap statband">
-        {stats.map(s => (
-          <div key={s.l}>
+        {stats.map((s, i) => (
+          <div key={s.l} data-reveal={String(i + 1)}>
             <div className="v">{s.v}</div>
             <div className="l">{s.l}</div>
           </div>
@@ -238,7 +239,7 @@ function Portfolio() {
     <section className="section section--paper" id="portfolio">
       <div className="wrap">
         <div className="section-head" style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',maxWidth:'none'}}>
-          <div style={{maxWidth:640}}>
+          <div style={{maxWidth:640}} data-reveal="1">
             <span className="eyebrow">Portfolio</span>
             <h2>A concentrated portfolio of market-defining companies.</h2>
             <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:17,color:'var(--slate-600)',lineHeight:1.6,margin:'16px 0 0'}}>
@@ -247,7 +248,7 @@ function Portfolio() {
           </div>
         </div>
         <div className="pf-grid">
-          {cos.map(c => {
+          {cos.map((c, ci) => {
             const inner = (
               <>
                 <div>
@@ -275,9 +276,10 @@ function Portfolio() {
                 </div>
               </>
             );
+            const reveal = String((ci % 3) + 1);
             return c.deepDive
-              ? <a className="pf-cell" key={c.co} href={c.deepDive} style={{textDecoration:'none'}}>{inner}</a>
-              : <div className="pf-cell pf-cell--static" key={c.co}>{inner}</div>;
+              ? <a className="pf-cell" key={c.co} href={c.deepDive} style={{textDecoration:'none'}} data-reveal={reveal}>{inner}</a>
+              : <div className="pf-cell pf-cell--static" key={c.co} data-reveal={reveal}>{inner}</div>;
           })}
         </div>
       </div>
@@ -297,11 +299,13 @@ interface Person {
 
 function MemberPhoto({ img, init }: { img: string; init: string }) {
   const [err, setErr] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   return (
     <div className="photo">
       {!err
-        ? <img src={img} alt={init} onError={() => setErr(true)}
-            style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top'}} />
+        ? <img src={img} alt={init} onError={() => setErr(true)} onLoad={() => setLoaded(true)}
+            style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top',
+                    opacity:loaded?1:0,transition:'opacity .6s ease'}} />
         : <span className="initials">{init}</span>
       }
     </div>
@@ -394,7 +398,7 @@ function Team() {
   return (
     <section className="section section--white" id="team">
       <div className="wrap">
-        <div className="section-head" style={{maxWidth:760}}>
+        <div className="section-head" style={{maxWidth:760}} data-reveal="1">
           <span className="eyebrow">The partnership</span>
           <h2>Operators. Investors.</h2>
           <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:17,color:'var(--slate-600)',lineHeight:1.7,margin:'20px 0 0'}}>
@@ -403,7 +407,7 @@ function Team() {
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:0,marginBottom:80}}>
           {partners.map((p, i) => (
-            <div className="member partner-row" key={p.nm}
+            <div className="member partner-row" key={p.nm} data-reveal="1"
                  style={{display:'grid',gridTemplateColumns:'240px 1fr',gap:48,padding:'44px 0',borderTop: i === 0 ? 'none' : '1px solid var(--border)'}}>
               <div>
                 <MemberPhoto img={p.img} init={p.init} />
@@ -428,13 +432,13 @@ function Team() {
         </div>
 
         <div style={{borderTop:'1px solid var(--border)',paddingTop:56,marginTop:16}}>
-          <div style={{marginBottom:40}}>
+          <div style={{marginBottom:40}} data-reveal="1">
             <span className="eyebrow">Strategic Advisors & SPV Partners</span>
             <h2 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:'var(--text-2xl)',lineHeight:1.15,letterSpacing:'-.01em',margin:'14px 0 0'}}>The network behind the deals.</h2>
           </div>
           <div className="advisor-grid" style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:28}}>
-            {advisors.map(a => (
-              <div key={a.nm} className="advisor-card" style={{display:'flex',gap:24,padding:'28px',background:'var(--paper)',border:'1px solid var(--border)',borderRadius:8,borderTop:'3px solid var(--navy-200)'}}>
+            {advisors.map((a, i) => (
+              <div key={a.nm} className="advisor-card" data-reveal={String((i % 2) + 1)} style={{display:'flex',gap:24,padding:'28px',background:'var(--paper)',border:'1px solid var(--border)',borderRadius:8,borderTop:'3px solid var(--navy-200)'}}>
                 <div style={{width:96,height:96,borderRadius:8,overflow:'hidden',flexShrink:0,background:'var(--navy-100)'}}>
                   <MemberPhoto img={a.img} init={a.init} />
                 </div>
@@ -476,7 +480,7 @@ function News() {
   return (
     <section className="section section--paper" id="insights">
       <div className="wrap">
-        <div className="section-head">
+        <div className="section-head" data-reveal="1">
           <span className="eyebrow">News</span>
           <h2>In the press.</h2>
         </div>
@@ -490,10 +494,11 @@ function News() {
               </>
             );
             const external = item.href?.startsWith('http');
+            const reveal = String((i % 2) + 1);
             return item.href
-              ? <a key={i} className="news-cell" href={item.href}
+              ? <a key={i} className="news-cell" href={item.href} data-reveal={reveal}
                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{inner}</a>
-              : <div key={i} className="news-cell">{inner}</div>;
+              : <div key={i} className="news-cell" data-reveal={reveal}>{inner}</div>;
           })}
         </div>
       </div>
@@ -505,7 +510,7 @@ function News() {
 function CTA({ onRequest }: { onRequest: () => void }) {
   return (
     <section className="section section--navy">
-      <div className="wrap cta-band">
+      <div className="wrap cta-band" data-reveal="1">
         <span className="eyebrow" style={{color:'#9FB6D9'}}>Co-invest with Catapult</span>
         <h2>Interested in our next SPV?</h2>
         <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:18,color:'#C9D7EA',lineHeight:1.6,margin:'0 auto 32px',maxWidth:480}}>
@@ -603,6 +608,7 @@ export default function Home() {
 
   return (
     <div className="site">
+      <ScrollFx />
       <Nav onRequest={() => setShowRequest(true)} scrolled={scrolled} onNav={handleNav} />
       <Hero onRequest={() => setShowRequest(true)} />
       <Strategy />
