@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ScrollFx from '../../ScrollFx'
+import OrgLogo from '../OrgLogo'
 import '../../website.css'
 
 export const metadata = {
@@ -49,12 +50,12 @@ export default function CellanomePage() {
   ]
 
   const traction = [
-    { name: 'UCSF', desc: 'Matthew Spitzer lab, immune cell interaction and T cell functional heterogeneity studies, with multiple publications in progress.' },
-    { name: 'Salk Institute', desc: 'Gage and Ecker labs, neurosphere formation and neuroscience applications, including co-authorship on the May 2026 bioRxiv preprint.' },
-    { name: 'Genentech', desc: 'Using the R3200 for pooled CRISPR screening, linking genetic perturbations to cell morphology, protein expression, and transcriptome in the same single cells.' },
-    { name: 'VIB Technologies', desc: 'First European installation. Cellanome\'s initial foothold in the European life sciences research market.' },
-    { name: 'Psomagen', desc: 'Offering the R3200 as a service, making Cellanome\'s single-cell assays available to academic, pharma, and biotech clients through its Single Cell & Spatial Biology Center of Excellence.' },
-    { name: 'Duke University', desc: 'CRISPR screening and phenotype-to-function mapping in cell biology and genomics research.' },
+    { name: 'UCSF', logo: '/assets/logo-ucsf.png', desc: 'Matthew Spitzer lab, immune cell interaction and T cell functional heterogeneity studies, with multiple publications in progress.' },
+    { name: 'Salk Institute', logo: '/assets/logo-salk.png', desc: 'Gage and Ecker labs, neurosphere formation and neuroscience applications, including co-authorship on the May 2026 bioRxiv preprint.' },
+    { name: 'Genentech', logo: '/assets/logo-genentech.png', desc: 'Using the R3200 for pooled CRISPR screening, linking genetic perturbations to cell morphology, protein expression, and transcriptome in the same single cells.' },
+    { name: 'VIB Technologies', logo: '/assets/logo-vib.png', desc: 'First European installation. Cellanome\'s initial foothold in the European life sciences research market.' },
+    { name: 'Psomagen', logo: '/assets/logo-psomagen.png', desc: 'Offering the R3200 as a service, making Cellanome\'s single-cell assays available to academic, pharma, and biotech clients through its Single Cell & Spatial Biology Center of Excellence.' },
+    { name: 'Duke University', logo: '/assets/logo-duke.png', desc: 'CRISPR screening and phenotype-to-function mapping in cell biology and genomics research.' },
   ]
 
   const team = [
@@ -225,7 +226,10 @@ export default function CellanomePage() {
           <div className="ig2" style={{gap:1,background:'var(--border)',border:'1px solid var(--border)',borderRadius:8,overflow:'hidden'}}>
             {traction.map((t, i) => (
               <div key={i} style={{background:'#fff',padding:'22px 24px'}}>
-                <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,marginBottom:8,color:'var(--ink)'}}>{t.name}</div>
+                <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:10}}>
+                  <OrgLogo src={t.logo} name={t.name} />
+                  <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16,color:'var(--ink)'}}>{t.name}</div>
+                </div>
                 <div style={{fontSize:14,lineHeight:1.6,color:'var(--slate-600)'}}>{t.desc}</div>
               </div>
             ))}
