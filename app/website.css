@@ -109,4 +109,8 @@
   .nav-burger{display:block}
   .cards3,.statband,.team-grid,.pf-grid{grid-template-columns:1fr 1fr}
   .hero-stats{grid-template-columns:1fr 1fr}
+  .partner-row{grid-template-columns:1fr !important;gap:24px !important}
+  .partner-row .photo{max-width:240px}
+  .advisor-grid{grid-template-columns:1fr !important}
+  .advisor-card{flex-direction:column}
 }

@@ -47,6 +47,8 @@ interface Company {
   status: 'active' | 'exited';
   ticker?: string;
   deepDive?: string;
+  logo?: string;
+  detail?: string;
 }
 
 /* ---- Nav ---- */
@@ -132,19 +134,19 @@ function Strategy() {
   const pillars = [
     {
       Ic: IconUsers, h: 'Operators First',
-      p: 'Our partners are operators first. They have founded, scaled, and run companies, and they bring that experience directly to the teams we back, helping them execute rather than advising from a distance.'
+      p: 'Our partners are operators first. They have founded, scaled, and run companies, and they bring that experience directly to the teams we back, helping them execute rather than advising from a distance. Our investment in Grindr is a clear example of the impact this strategy can have: our partners served as CEO, COO, and CFO for nearly three years, driving meaningful shareholder value and a stronger product for users.'
     },
     {
       Ic: IconShield, h: 'Balance Risk',
-      p: 'We base every investment on a strong thesis: a defined view of an industry and the operating principles that lead to successful outcomes. We invest with conviction, operate decisively, and balance risk against reward.'
+      p: 'We base every investment on a strong thesis: a defined view of an industry and the operating principles that lead to successful outcomes. We back businesses we believe can deliver returns in line with that thesis, then apply our expertise, operating experience, and partner network to help them get there. We invest with conviction, operate decisively, and balance risk against reward to deliver consistent returns.'
     },
     {
       Ic: IconTrendingUp, h: 'Capital Structures',
-      p: 'We pursue both equity and debt structures, with a focus on late-stage opportunities and acquisitions. Target deal sizes range from $50M to $500M, blending equity and debt financing to fit the demands of each situation.'
+      p: 'We pursue both equity and debt structures, with a focus on late-stage opportunities and acquisitions. Our target deal sizes range from $50 million to $500 million, with most transactions blending equity and debt financing to fit the demands of each situation. Working across the capital stack lets us match structure to the risk and return of each deal, protecting capital where it matters most.'
     },
     {
       Ic: IconLayers, h: 'SPV Architecture',
-      p: 'Our fundless model lets us build each special purpose vehicle around the specific demands of the deal, recruiting the right co-investors and operators. We target liquidity horizons of one to four years.'
+      p: 'Our fundless model lets us build each special purpose vehicle around the specific demands of the deal, recruiting the right co-investors and operators. For each investment, we bring on an industry pioneer to anchor the deal with domain expertise and peer-level credibility to management. We target liquidity horizons of one to four years, with a return objective of one additional multiple per year of holding period.'
     },
   ];
   return (
@@ -196,50 +198,72 @@ function Portfolio({ onSelect }: { onSelect: (c: Company) => void }) {
     {
       co: 'Grindr', sector: 'Internet / Social', status: 'exited', moic: '9×', year: '2020',
       desc: 'Partnered in the acquisition, scaling, and successful IPO of Grindr (NYSE: GRND); the premier location-based LGBTQ+ dating platform.',
-      ticker: 'NYSE: GRND'
+      detail: 'Grindr is a leading LGBTQ+ social networking and online dating platform. After partnering with a second PE firm to acquire the company in 2020, Catapult Capital jumped in as the operating partner to shift user architecture toward high-margin premium subscription tiers and optimized international user acquisition pipelines. In November 2022, we took the company public and the firm exited, generating an approximate 9x gross return on invested capital over a 36-month hold period.',
+      ticker: 'NYSE: GRND',
+      logo: '/assets/logo-grindr.png',
     },
     {
       co: 'Powerlaw Corp', sector: 'Financial Technology', status: 'exited', moic: '4×', year: '2024',
       desc: 'A publicly traded closed-end fund (NASDAQ: PWRL) providing retail and institutional investors with direct access to high-growth, late-stage private technology companies.',
-      ticker: 'NASDAQ: PWRL'
+      detail: 'PowerLaw Corp. (NASDAQ: PWRL) is a publicly traded closed-end fund designed to provide retail and institutional investors with direct access to high-growth, late-stage private technology companies. The fund\'s portfolio is composed of secondary shares in premier, venture-backed businesses, bridging the gap between private markets and public liquidity. Catapult Capital invested in the fund in late 2024, having recognized the market demand for institutional-grade secondary access. Following PWRL\'s successful direct listing on the NASDAQ, Catapult\'s investment achieved a 4x return over an 18-month holding period.',
+      ticker: 'NASDAQ: PWRL',
+      logo: '/assets/logo-pwrl.png',
     },
     {
       co: 'Genalyte', sector: 'Life Sciences / Diagnostics', status: 'active', year: '2025',
       desc: 'Developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the philosophy to "move data, not blood," delivering onsite, real-time results for over 85% of standard primary care blood panels.',
       deepDive: '/insights/genalyte',
+      logo: '/assets/logo-genalyte.png',
+      detail: 'Genalyte is a life sciences and clinical health-tech company developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the core philosophy to "move data, not blood," its platform delivers onsite, real-time results for over 85% of standard primary care blood panels. Since assuming majority control in 2025, Catapult Capital has worked closely with management to accelerate clinical validation, streamline FDA approval pathways, and optimize the go-to-market architecture.',
     },
     {
       co: 'Cellanome', sector: 'Life Sciences / Multi-omics', status: 'active', year: '2024',
       desc: 'Building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution.',
       deepDive: '/insights/cellanome',
+      logo: '/assets/logo-cellanome.png',
+      detail: 'Cellanome is building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution. As a growth-stage investor, Catapult Capital actively supports management in optimizing capital architecture.',
     },
     {
       co: 'JibJab', sector: 'Digital Media', status: 'exited', moic: '4.4×', year: '2018',
       desc: 'A digital media and personalized e-card platform. Following a majority acquisition, Catapult re-engineered the direct-to-consumer subscription model and streamlined core technical operations.',
+      detail: 'JibJab is a digital media and personalized e-card platform famous for its pioneering user-generated video technology and satirical content. Following a majority acquisition in 2018, Catapult Capital re-engineered the company\'s direct-to-consumer subscription models, optimized digital distribution channels, and streamlined core technical operations. By modernizing the platform\'s scaling architecture, Catapult drove sustained profitability, culminating in a successful sale in 2026 that generated a 4.4x return on invested capital.',
+      logo: '/assets/logo-jibjab.png',
     },
     {
       co: 'Vesta', sector: 'Enterprise Payments', status: 'active', year: '2025',
       desc: 'An enterprise payment processing and fraud-mitigation platform that guarantees zero-liability for approved transactions. Consistently maintains transaction approval rates exceeding 95%.',
+      detail: 'Vesta is an enterprise payment processing and fraud-mitigation platform that guarantees zero-liability for approved transactions while maximizing legitimate digital commerce sales. Trusted globally across the telecommunications and e-commerce sectors, the platform consistently maintains transaction approval rates exceeding 95%. Since investing in 2025, Catapult Capital has collaborated with management and syndicate partners to expand enterprise market share and accelerate high-margin product innovation.',
+      logo: '/assets/logo-vesta.png',
     },
     {
       co: 'Captiv8', sector: 'Marketing Technology', status: 'exited', moic: '2.5×', year: '2024',
       desc: 'An influencer marketing and social commerce platform for enterprise brands and agencies. Rapid strategic acquisition just eight months after investment delivered a 2.5× return.',
+      detail: 'Captiv8 is an influencer marketing and social commerce platform providing enterprise brands and agencies with end-to-end infrastructure to discover creators, manage campaigns, and measure real-time ROI. Following a strategic investment in late 2024, Catapult Capital engaged immediately with management to sharpen commercial operations and optimize enterprise positioning, facilitating a rapid strategic acquisition just eight months later that delivered a 2.5x return on invested capital.',
+      logo: '/assets/logo-captiv8.png',
     },
   ];
   return (
     <section className="section section--paper" id="portfolio">
       <div className="wrap">
         <div className="section-head" style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',maxWidth:'none'}}>
-          <div>
+          <div style={{maxWidth:640}}>
             <span className="eyebrow">Portfolio</span>
             <h2>A concentrated portfolio of market-defining companies.</h2>
+            <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:17,color:'var(--slate-600)',lineHeight:1.6,margin:'16px 0 0'}}>
+              Built on operational expertise and structural insight. Select a company to see how we engaged.
+            </p>
           </div>
         </div>
         <div className="pf-grid">
           {cos.map(c => (
             <div className="pf-cell" key={c.co} onClick={() => onSelect(c)}>
               <div>
-                <div className="sector">{c.sector}</div>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14}}>
+                  <div className="sector" style={{marginBottom:0}}>{c.sector}</div>
+                  {c.logo && (
+                    <img src={c.logo} alt={c.co} style={{height:36,width:36,objectFit:'contain',flexShrink:0}} />
+                  )}
+                </div>
                 <div className="co">{c.co}</div>
                 <div className="desc">{c.desc}</div>
               </div>
@@ -270,7 +294,7 @@ interface Person {
   init: string;
   img: string;
   linkedin?: string;
-  bio: string;
+  bio: string[];
 }
 
 function MemberPhoto({ img, init }: { img: string; init: string }) {
@@ -292,86 +316,142 @@ function Team() {
       nm: 'Jeff Bonforte', role: 'Co-Founder & Managing Partner', init: 'JB',
       img: '/assets/jeff-bonforte.jpg',
       linkedin: 'https://linkedin.com/in/bonforte',
-      bio: 'Serial entrepreneur with 30+ years founding startups and leading companies. Former SVP at Yahoo overseeing Mail, Search, and Answers. Served as CEO of Grindr for 2.5 years through its NYSE IPO.'
+      bio: [
+        'Jeff is a technology executive and serial entrepreneur with over 30 years of experience founding startups, leading companies, and investing in early-stage technology. He has founded and led five startups in the consumer and productivity space, with successful exits to Google and Yahoo. During his eight-year tenure as an executive at Yahoo, Jeff served as Senior Vice President, overseeing core business units including Mail, Search, Answers, Data Platforms, and Research.',
+        'Through Catapult Capital, Jeff has served as an executive board member for JibJab and Genalyte. Following the Grindr acquisition, he stepped in as CEO for over 2.5 years to lead a comprehensive transformation of the company from a troubled service into a NYSE public company. Under the leadership of Jeff and his partners at Catapult, Grindr more than doubled its revenue and EBITDA while successfully resolving deep-seated issues in security, privacy, culture, operations, engineering, and product.',
+        'Jeff\'s background, combining founder-level product instincts with large-platform scale experience, anchors Catapult Capital as an operator-led investment firm. His hands-on approach is directly applicable to Catapult\'s core focus areas in internet, consumer, software, and life science sectors.',
+      ],
     },
     {
       nm: 'Rick Marini', role: 'Co-Founder & Managing Partner', init: 'RM',
       img: '/assets/rick-marini.jpg',
       linkedin: 'https://linkedin.com/in/rickmarini/',
-      bio: 'Founded Tickle (acquired by Monster, $100M), BranchOut, and Protocol Ventures. 50+ angel investments including 15 unicorns. Named one of Forbes Top 50 angel investors. Served as COO of Grindr.'
+      bio: [
+        'Rick\'s career spans more than 25 years as a serial entrepreneur and one of Silicon Valley\'s most active angel investors. He founded multiple startups, including Tickle (acquired by Monster for $100 million), BranchOut (raised $49M, acquired by Hearst), Protocol Ventures (the first fund-of-funds in crypto), and Rails.xyz (a regulated crypto perps exchange that raised $20M). As an angel investor, Rick has executed more than 50 investments, including 15 unicorns. Forbes named him one of the Top 50 angel investors based on successful exits and deal volume.',
+        'At Catapult Capital, Rick led the firm\'s sourcing, negotiation, and governance for the acquisitions of Grindr (Rick served as COO at Grindr before taking the company public for $2B, 9x equity return), JibJab (5x return), and Captiv8 (2.5x return in 18 months). He is actively involved with the firm\'s current holdings, including Vesta, Genalyte, Cellanome, and PL10. Rick\'s areas of focus include consumer-facing technology, subscription businesses, social and digital media, marketplaces, and blockchain.',
+        'Rick currently serves as a Board Member of Rails.xyz, Character.ai, JibJab, Genalyte, The Peter T. Paul School of Business & Economics at The University of New Hampshire, and the Harvard Business School California Research Center. Rick received his MBA from Harvard Business School. He holds a B.S. in Business Administration from the University of New Hampshire where he graduated magna cum laude.',
+      ],
     },
     {
       nm: 'Gary Hsueh', role: 'Co-Founder & Managing Partner', init: 'GH',
       img: '/assets/gary-hsueh.jpg',
       linkedin: 'https://linkedin.com/in/garyhsueh/',
-      bio: '25+ years in corporate finance, M&A, and operations. Former VP at Goldman Sachs advising on ~$90B in transactions including Tesla\'s IPO. Served as CFO of Grindr through its 2022 NYSE listing.'
+      bio: [
+        'Gary has more than 25 years of experience across corporate finance, operations, business development, and mergers & acquisitions in the technology and internet sectors. He is currently the CFO of BOLD, one of the world\'s largest consumer-focused career platforms. Prior to joining BOLD, Gary was a co-founder and Managing Partner of Catapult Capital. During his time at Catapult, he also served as CFO of Grindr, where he helped grow revenue and profitability by more than 80% and led the company through its 2022 public listing on the NYSE.',
+        'Earlier in his career, Gary was Vice President and Global Head of Search Partnerships at Yahoo, where he led global search distribution and content partnerships. He also founded and advised several startups across industries including consumer internet and mobile payments. Gary previously served as a Vice President in the Technology Investment Banking Division at Goldman Sachs, where he advised on nearly $90 billion in M&A and financing transactions, including the Skype divestiture from eBay, the subsequent sale of Skype to Microsoft, and the Tesla Motors IPO. Earlier in his career, he held operations and manufacturing leadership roles at Cisco Systems and Conexant Systems.',
+        'Gary holds an MBA from the UCLA Anderson School of Management and a BS in Industrial Engineering from California Polytechnic State University, San Luis Obispo, where he graduated with honors.',
+      ],
     },
     {
       nm: 'Brent Vegliacich', role: 'Partner', init: 'BV',
       img: '/assets/brent-vegliacich.jpg',
       linkedin: 'https://linkedin.com/in/brentvegliacich/',
-      bio: 'Attorney and CPA specializing in investment structuring and tax. Managing Member of Selborne Legal Consulting and co-founder of Rails.xyz. Former M&A attorney at Reed Smith LLP and EY International Tax.'
+      bio: [
+        'Brent has supported Catapult Capital\'s institutional legal, tax, and structural work since 2019. Brent is a New York–based attorney and Certified Public Accountant with deep experience advising clients on the business and tax aspects of structuring investments for maximum after-tax profitability across the corporate growth cycle. He is currently the Managing Member of Selborne Legal Consulting LLC (legal counsel to the Fund), and the co-founder, CFO, and General Counsel of Rails, a crypto-derivatives exchange.',
+        'Brent\'s prior experience includes more than four years as an attorney at Reed Smith LLP advising on M&A transactions in the consumer products and technology sectors, and more than three years in EY\'s International Tax practice advising public companies and private equity funds on M&A transactions, pre-acquisition structuring, and internal reorganizations.',
+        'Brent holds a Master of Laws (LL.M.) in Taxation from the New York University School of Law, a Juris Doctor from New York Law School, a Master of Accounting and a Bachelor of Business Administration in Accounting, both from the University of South Alabama.',
+      ],
     },
     {
       nm: 'Liam Ostadan', role: 'Associate', init: 'LO',
       img: '/assets/liam-ostadan.jpg',
-      bio: 'B.S. Biochemistry and Certificate in Entrepreneurship, University of Wisconsin-Madison. Prior experience at Premji Invest and Cellanome. Supports Catapult operations and Genalyte with a focus on life science investment.'
+      bio: [
+        'Liam joined Catapult Capital as an analyst in 2026 after graduating from the University of Wisconsin-Madison with a B.S. in Biochemistry and a Certificate in Entrepreneurship. Liam combines his educational background and previous professional experiences to support the operations of Catapult Capital and Genalyte, with a focus on growth-stage life science investment opportunities.',
+        'Prior to starting at Catapult, Liam has gained internship experiences that have prepared him to make meaningful contributions to the firm. Through internships at the venture capital firm Premji Invest and the biotech startup Cellanome, Liam has worked in fast-paced environments and supported the growth of innovative technologies. Additionally, Liam has hands-on experience at multiple leading academic labs, providing the technical knowledge to support Catapult\'s investments.',
+      ],
     },
   ];
 
   const advisors = [
-    { nm: 'Jacqueline Reses', init: 'JR', img: '/assets/jackie-reses.png', role: 'Chair, CEO & Co-Founder, Lead Bank', focus: 'Grindr', linkedin: 'https://linkedin.com/in/jacqueline-reses-938b7850/' },
-    { nm: 'Sam Yagan', init: 'SY', img: '/assets/sam-yagan.png', role: 'Co-Founder, OkCupid & Corazon Capital', focus: 'Grindr', linkedin: 'https://linkedin.com/in/samyagan/' },
-    { nm: 'Mostafa Ronaghi', init: 'MR', img: '/assets/mostafa-ronaghi.png', role: 'Co-Founder, Cellanome; Former CTO, Illumina', focus: 'Genalyte · Cellanome', linkedin: 'https://linkedin.com/in/mostafa-ronaghi-505440/' },
-    { nm: 'David Ko', init: 'DK', img: '/assets/david-ko.png', role: 'Former CEO, Calm; Former COO, Zynga', focus: 'Life Sciences Fund', linkedin: 'https://linkedin.com/in/daveko/' },
+    {
+      nm: 'Jacqueline Reses', init: 'JR', img: '/assets/jackie-reses.png',
+      role: 'Chair, CEO & Co-Founder, Lead Bank',
+      focus: 'Grindr',
+      linkedin: 'https://linkedin.com/in/jacqueline-reses-938b7850/',
+      bio: 'Jackie Reses is the Chair, CEO, and co-founder of Lead Bank, a chartered banking-as-a-service platform for fintech and crypto startups. She served as the Chief Development Officer at Yahoo from 2012–2016, sat on the board of Alibaba Group, and was the Capital Lead and Executive Chair of Square Financial Services. A Wharton graduate, Jackie sits on the boards of Endeavor, Affirm, and Nubank and is a member of the Wharton Board of Advisors.',
+    },
+    {
+      nm: 'Sam Yagan', init: 'SY', img: '/assets/sam-yagan.png',
+      role: 'Co-Founder, OkCupid & Corazon Capital',
+      focus: 'Grindr',
+      linkedin: 'https://linkedin.com/in/samyagan/',
+      bio: 'Sam Yagan is a Harvard-educated serial entrepreneur and co-founder of SparkNotes, OkCupid, and Corazon Capital, an early-stage VC firm. As CEO of Match Group, he oversaw the launch of Tinder and the company\'s 2015 IPO, and later led ShopRunner through its 2020 acquisition by FedEx. He served as a lead director of Grindr through its 2022 NYSE listing and was named one of Time magazine\'s 100 most influential people in the world in 2013.',
+    },
+    {
+      nm: 'Mostafa Ronaghi', init: 'MR', img: '/assets/mostafa-ronaghi.png',
+      role: 'Co-Founder, Cellanome; Former CTO, Illumina',
+      focus: 'Genalyte · Cellanome · Life Sciences Fund',
+      linkedin: 'https://linkedin.com/in/mostafa-ronaghi-505440/',
+      bio: 'Mostafa Ronaghi, Ph.D., is the co-founder and Executive Board Member of Cellanome. Prior to founding Cellanome, Mostafa served as SVP and Chief Technology Officer at Illumina for over a decade and co-founded both the Illumina Accelerator and GRAIL. He has co-founded four additional biotech companies, leading each to successful exits. Mostafa holds more than 30 patents, has authored over 50 peer-reviewed publications, and was a principal investigator at Stanford University\'s Genome Center.',
+    },
+    {
+      nm: 'David Ko', init: 'DK', img: '/assets/david-ko.png',
+      role: 'Former CEO, Calm; Former COO, Zynga',
+      focus: 'Life Sciences Fund',
+      linkedin: 'https://linkedin.com/in/daveko/',
+      bio: 'David Ko co-founded Ripple Health Group, a health-tech startup acquired by Calm in 2022, where he subsequently served as CEO and Board Member through early 2026. Earlier in his career, he spent over 10 years at Yahoo as SVP of Audience, Mobile, and Local businesses, then served as Chief Mobile Officer and COO at Zynga during the company\'s 2011 IPO. He serves as a Member of NYU\'s Board of Trustees and board member of the NYU Stern Venture Fellows program.',
+    },
   ];
 
   return (
     <section className="section section--white" id="team">
       <div className="wrap">
-        <div className="section-head">
+        <div className="section-head" style={{maxWidth:760}}>
           <span className="eyebrow">The partnership</span>
           <h2>Operators. Investors.</h2>
+          <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:17,color:'var(--slate-600)',lineHeight:1.7,margin:'20px 0 0'}}>
+            Catapult Capital's partners have advised and executed on some of the largest transactions in the technology sector, scaled early and late-stage enterprises, and founded and exited market-defining platforms as principals. The firm's execution thesis brings a distinct operational perspective to underwriting because it is rooted in direct experience as executives, owners, and operators — not just financial deal-makers. This structural combination delivers the institutional capacity to execute highly complex corporate transformations while providing definitive strategic, financial, and technical direction alongside management teams to maximize long-term value.
+          </p>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:28,marginBottom:64}}>
-          {partners.map(p => (
-            <div className="member" key={p.nm}>
-              <MemberPhoto img={p.img} init={p.init} />
-              <div style={{display:'flex',alignItems:'center',gap:6,marginTop:16,marginBottom:2}}>
-                <div className="nm" style={{margin:0}}>{p.nm}</div>
-                {p.linkedin && (
-                  <a href={p.linkedin} target="_blank" rel="noopener noreferrer"
-                     style={{color:'var(--slate-400)',flexShrink:0,display:'flex',alignItems:'center'}}
-                     onClick={e => e.stopPropagation()}>
-                    <IconLinkedIn size={13} />
-                  </a>
-                )}
+        <div style={{display:'flex',flexDirection:'column',gap:0,marginBottom:80}}>
+          {partners.map((p, i) => (
+            <div className="member partner-row" key={p.nm}
+                 style={{display:'grid',gridTemplateColumns:'240px 1fr',gap:48,padding:'44px 0',borderTop: i === 0 ? 'none' : '1px solid var(--border)'}}>
+              <div>
+                <MemberPhoto img={p.img} init={p.init} />
               </div>
-              <div className="role">{p.role}</div>
-              <p style={{fontSize:12.5,color:'var(--slate-500)',lineHeight:1.55,marginTop:8}}>{p.bio}</p>
+              <div>
+                <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:2}}>
+                  <div className="nm" style={{margin:0,fontSize:22}}>{p.nm}</div>
+                  {p.linkedin && (
+                    <a href={p.linkedin} target="_blank" rel="noopener noreferrer"
+                       style={{color:'var(--slate-400)',flexShrink:0,display:'flex',alignItems:'center'}}>
+                      <IconLinkedIn size={14} />
+                    </a>
+                  )}
+                </div>
+                <div className="role" style={{fontSize:13.5,marginBottom:18}}>{p.role}</div>
+                {p.bio.map((para, j) => (
+                  <p key={j} style={{fontSize:14.5,color:'var(--slate-600)',lineHeight:1.7,margin: j === 0 ? '0 0 14px' : '0 0 14px'}}>{para}</p>
+                ))}
+              </div>
             </div>
           ))}
         </div>
 
-        <div>
-          <div style={{borderTop:'1px solid var(--border)',paddingTop:40,marginBottom:32}}>
+        <div style={{borderTop:'1px solid var(--border)',paddingTop:56,marginTop:16}}>
+          <div style={{marginBottom:40}}>
             <span className="eyebrow">Strategic Advisors & SPV Partners</span>
+            <h2 style={{fontFamily:'var(--font-serif)',fontWeight:500,fontSize:'var(--text-2xl)',lineHeight:1.15,letterSpacing:'-.01em',margin:'14px 0 0'}}>The network behind the deals.</h2>
           </div>
-          <div className="team-grid">
+          <div className="advisor-grid" style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:28}}>
             {advisors.map(a => (
-              <div key={a.nm} style={{borderTop:'2px solid var(--navy-100)',paddingTop:18}}>
-                <div style={{width:64,height:64,borderRadius:'50%',overflow:'hidden',marginBottom:12,background:'var(--navy-100)'}}>
+              <div key={a.nm} className="advisor-card" style={{display:'flex',gap:24,padding:'28px',background:'var(--paper)',border:'1px solid var(--border)',borderRadius:8,borderTop:'3px solid var(--navy-200)'}}>
+                <div style={{width:96,height:96,borderRadius:8,overflow:'hidden',flexShrink:0,background:'var(--navy-100)'}}>
                   <MemberPhoto img={a.img} init={a.init} />
                 </div>
-                <div style={{display:'flex',alignItems:'center',gap:6,marginBottom:4}}>
-                  <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:16}}>{a.nm}</div>
-                  <a href={a.linkedin} target="_blank" rel="noopener noreferrer"
-                     style={{color:'var(--slate-400)',display:'flex',alignItems:'center'}}>
-                    <IconLinkedIn size={13} />
-                  </a>
+                <div style={{minWidth:0}}>
+                  <div style={{display:'flex',alignItems:'center',gap:6,marginBottom:4}}>
+                    <div style={{fontFamily:'var(--font-serif)',fontWeight:600,fontSize:18,color:'var(--ink)'}}>{a.nm}</div>
+                    <a href={a.linkedin} target="_blank" rel="noopener noreferrer"
+                       style={{color:'var(--slate-400)',display:'flex',alignItems:'center',flexShrink:0}}>
+                      <IconLinkedIn size={13} />
+                    </a>
+                  </div>
+                  <div style={{fontSize:13,color:'var(--slate-600)',lineHeight:1.4,marginBottom:6}}>{a.role}</div>
+                  <div style={{fontSize:10,fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.12em',color:'var(--navy-600)',marginBottom:12}}>{a.focus}</div>
+                  <p style={{fontSize:13.5,color:'var(--slate-600)',lineHeight:1.6,margin:0}}>{a.bio}</p>
                 </div>
-                <div style={{fontSize:13,color:'var(--slate-600)',lineHeight:1.5,marginBottom:6}}>{a.role}</div>
-                <div style={{fontSize:11,fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.12em',color:'var(--navy-600)'}}>{a.focus}</div>
               </div>
             ))}
           </div>
@@ -521,10 +601,13 @@ function CompanyModal({ company, onClose }: { company: Company | null; onClose: 
   return (
     <div className="scrim" onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()} style={{maxWidth:520}}>
-        <span className="eyebrow">{company.sector}</span>
+        <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:16,marginBottom:4}}>
+          <span className="eyebrow">{company.sector}</span>
+          {company.logo && <img src={company.logo} alt={company.co} style={{height:40,width:40,objectFit:'contain',flexShrink:0}} />}
+        </div>
         <h3 style={{marginBottom:6}}>{company.co}</h3>
         {company.ticker && <div style={{fontFamily:'var(--font-mono)',fontSize:12,color:'var(--slate-500)',marginBottom:12}}>{company.ticker}</div>}
-        <p style={{fontSize:15,color:'var(--slate-600)',lineHeight:1.6,marginTop:0}}>{company.desc}</p>
+        <p style={{fontSize:15,color:'var(--slate-600)',lineHeight:1.65,marginTop:0}}>{company.detail ?? company.desc}</p>
         <div style={{display:'flex',gap:0,borderTop:'1px solid var(--border)',marginTop:18}}>
           {([
             ['Invested', company.year],
