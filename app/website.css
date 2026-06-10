@@ -69,7 +69,9 @@
 .pf-cell:hover{background:var(--navy-50)}
 .pf-cell .sector{font-family:var(--font-brand);text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--slate-500)}
 .pf-cell .co{font-family:var(--font-serif);font-weight:600;font-size:23px;margin:14px 0 6px;color:var(--ink)}
-.pf-cell .desc{font-size:13.5px;color:var(--slate-600);line-height:1.5}
+.pf-cell .desc{font-size:14px;color:var(--slate-600);line-height:1.6}
+.pf-cell--static{cursor:default}
+.pf-cell--static:hover{background:var(--white)}
 .pf-cell .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px}
 .pf-cell .moic{font-family:var(--font-mono);font-weight:500;color:var(--gain);font-size:15px}
 .pf-cell .year{font-family:var(--font-mono);font-size:12px;color:var(--slate-400)}

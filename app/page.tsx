@@ -48,7 +48,6 @@ interface Company {
   ticker?: string;
   deepDive?: string;
   logo?: string;
-  detail?: string;
 }
 
 /* ---- Nav ---- */
@@ -193,52 +192,45 @@ function StatBand() {
 }
 
 /* ---- Portfolio ---- */
-function Portfolio({ onSelect }: { onSelect: (c: Company) => void }) {
+function Portfolio() {
   const cos: Company[] = [
     {
       co: 'Grindr', sector: 'Internet / Social', status: 'exited', moic: '9×', year: '2020',
-      desc: 'Partnered in the acquisition, scaling, and successful IPO of Grindr (NYSE: GRND); the premier location-based LGBTQ+ dating platform.',
-      detail: 'Grindr is a leading LGBTQ+ social networking and online dating platform. After partnering with a second PE firm to acquire the company in 2020, Catapult Capital jumped in as the operating partner to shift user architecture toward high-margin premium subscription tiers and optimized international user acquisition pipelines. In November 2022, we took the company public and the firm exited, generating an approximate 9x gross return on invested capital over a 36-month hold period.',
+      desc: 'Grindr is a leading LGBTQ+ social networking and online dating platform. After partnering with a second PE firm to acquire the company in 2020, Catapult Capital jumped in as the operating partner to shift user architecture toward high-margin premium subscription tiers and optimized international user acquisition pipelines. In November 2022, we took the company public and the firm exited, generating an approximate 9x gross return on invested capital over a 36-month hold period.',
       ticker: 'NYSE: GRND',
       logo: '/assets/logo-grindr.png',
     },
     {
       co: 'Powerlaw Corp', sector: 'Financial Technology', status: 'exited', moic: '4×', year: '2024',
-      desc: 'A publicly traded closed-end fund (NASDAQ: PWRL) providing retail and institutional investors with direct access to high-growth, late-stage private technology companies.',
-      detail: 'PowerLaw Corp. (NASDAQ: PWRL) is a publicly traded closed-end fund designed to provide retail and institutional investors with direct access to high-growth, late-stage private technology companies. The fund\'s portfolio is composed of secondary shares in premier, venture-backed businesses, bridging the gap between private markets and public liquidity. Catapult Capital invested in the fund in late 2024, having recognized the market demand for institutional-grade secondary access. Following PWRL\'s successful direct listing on the NASDAQ, Catapult\'s investment achieved a 4x return over an 18-month holding period.',
+      desc: 'PowerLaw Corp. (NASDAQ: PWRL) is a publicly traded closed-end fund designed to provide retail and institutional investors with direct access to high-growth, late-stage private technology companies. The fund\'s portfolio is composed of secondary shares in premier, venture-backed businesses, bridging the gap between private markets and public liquidity. Catapult Capital invested in the fund in late 2024, having recognized the market demand for institutional-grade secondary access. Following PWRL\'s successful direct listing on the NASDAQ, Catapult\'s investment achieved a 4x return over an 18-month holding period.',
       ticker: 'NASDAQ: PWRL',
       logo: '/assets/logo-pwrl.png',
     },
     {
       co: 'Genalyte', sector: 'Life Sciences / Diagnostics', status: 'active', year: '2025',
-      desc: 'Developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the philosophy to "move data, not blood," delivering onsite, real-time results for over 85% of standard primary care blood panels.',
+      desc: 'Genalyte is a life sciences and clinical health-tech company developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the core philosophy to "move data, not blood," its platform delivers onsite, real-time results for over 85% of standard primary care blood panels. Since assuming majority control in 2025, Catapult Capital has worked closely with management to accelerate clinical validation, streamline FDA approval pathways, and optimize the go-to-market architecture.',
       deepDive: '/insights/genalyte',
       logo: '/assets/logo-genalyte.png',
-      detail: 'Genalyte is a life sciences and clinical health-tech company developing next-generation multiplexing technology to revolutionize diagnostic testing. Operating on the core philosophy to "move data, not blood," its platform delivers onsite, real-time results for over 85% of standard primary care blood panels. Since assuming majority control in 2025, Catapult Capital has worked closely with management to accelerate clinical validation, streamline FDA approval pathways, and optimize the go-to-market architecture.',
     },
     {
       co: 'Cellanome', sector: 'Life Sciences / Multi-omics', status: 'active', year: '2024',
-      desc: 'Building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution.',
+      desc: 'Cellanome is building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution. As a growth-stage investor, Catapult Capital actively supports management in optimizing capital architecture.',
       deepDive: '/insights/cellanome',
       logo: '/assets/logo-cellanome.png',
-      detail: 'Cellanome is building a foundational multi-omic platform for live-cell biology that maps individual cell behavior over time directly to molecular expression at single-cell resolution. As a growth-stage investor, Catapult Capital actively supports management in optimizing capital architecture.',
     },
     {
       co: 'JibJab', sector: 'Digital Media', status: 'exited', moic: '4.4×', year: '2018',
-      desc: 'A digital media and personalized e-card platform. Following a majority acquisition, Catapult re-engineered the direct-to-consumer subscription model and streamlined core technical operations.',
-      detail: 'JibJab is a digital media and personalized e-card platform famous for its pioneering user-generated video technology and satirical content. Following a majority acquisition in 2018, Catapult Capital re-engineered the company\'s direct-to-consumer subscription models, optimized digital distribution channels, and streamlined core technical operations. By modernizing the platform\'s scaling architecture, Catapult drove sustained profitability, culminating in a successful sale in 2026 that generated a 4.4x return on invested capital.',
+      desc: 'JibJab is a digital media and personalized e-card platform famous for its pioneering user-generated video technology and satirical content. Following a majority acquisition in 2018, Catapult Capital re-engineered the company\'s direct-to-consumer subscription models, optimized digital distribution channels, and streamlined core technical operations. By modernizing the platform\'s scaling architecture, Catapult drove sustained profitability, culminating in a successful sale in 2026 that generated a 4.4x return on invested capital.',
       logo: '/assets/logo-jibjab.png',
     },
     {
       co: 'Vesta', sector: 'Enterprise Payments', status: 'active', year: '2025',
-      desc: 'An enterprise payment processing and fraud-mitigation platform that guarantees zero-liability for approved transactions. Consistently maintains transaction approval rates exceeding 95%.',
-      detail: 'Vesta is an enterprise payment processing and fraud-mitigation platform that guarantees zero-liability for approved transactions while maximizing legitimate digital commerce sales. Trusted globally across the telecommunications and e-commerce sectors, the platform consistently maintains transaction approval rates exceeding 95%. Since investing in 2025, Catapult Capital has collaborated with management and syndicate partners to expand enterprise market share and accelerate high-margin product innovation.',
+      desc: 'Vesta is an enterprise payment processing and fraud-mitigation platform that guarantees zero-liability for approved transactions while maximizing legitimate digital commerce sales. Trusted globally across the telecommunications and e-commerce sectors, the platform consistently maintains transaction approval rates exceeding 95%. Since investing in 2025, Catapult Capital has collaborated with management and syndicate partners to expand enterprise market share and accelerate high-margin product innovation.',
       logo: '/assets/logo-vesta.png',
     },
     {
       co: 'Captiv8', sector: 'Marketing Technology', status: 'exited', moic: '2.5×', year: '2024',
-      desc: 'An influencer marketing and social commerce platform for enterprise brands and agencies. Rapid strategic acquisition just eight months after investment delivered a 2.5× return.',
-      detail: 'Captiv8 is an influencer marketing and social commerce platform providing enterprise brands and agencies with end-to-end infrastructure to discover creators, manage campaigns, and measure real-time ROI. Following a strategic investment in late 2024, Catapult Capital engaged immediately with management to sharpen commercial operations and optimize enterprise positioning, facilitating a rapid strategic acquisition just eight months later that delivered a 2.5x return on invested capital.',
+      desc: 'Captiv8 is an influencer marketing and social commerce platform providing enterprise brands and agencies with end-to-end infrastructure to discover creators, manage campaigns, and measure real-time ROI. Following a strategic investment in late 2024, Catapult Capital engaged immediately with management to sharpen commercial operations and optimize enterprise positioning, facilitating a rapid strategic acquisition just eight months later that delivered a 2.5x return on invested capital.',
       logo: '/assets/logo-captiv8.png',
     },
   ];
@@ -250,37 +242,43 @@ function Portfolio({ onSelect }: { onSelect: (c: Company) => void }) {
             <span className="eyebrow">Portfolio</span>
             <h2>A concentrated portfolio of market-defining companies.</h2>
             <p style={{fontFamily:'var(--font-serif)',fontWeight:300,fontSize:17,color:'var(--slate-600)',lineHeight:1.6,margin:'16px 0 0'}}>
-              Built on operational expertise and structural insight. Select a company to see how we engaged.
+              Built on operational expertise and structural insight.
             </p>
           </div>
         </div>
         <div className="pf-grid">
-          {cos.map(c => (
-            <div className="pf-cell" key={c.co} onClick={() => onSelect(c)}>
-              <div>
-                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14}}>
-                  <div className="sector" style={{marginBottom:0}}>{c.sector}</div>
-                  {c.logo && (
-                    <img src={c.logo} alt={c.co} style={{height:36,width:36,objectFit:'contain',flexShrink:0}} />
-                  )}
+          {cos.map(c => {
+            const inner = (
+              <>
+                <div>
+                  <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14}}>
+                    <div className="sector" style={{marginBottom:0}}>{c.sector}</div>
+                    {c.logo && (
+                      <img src={c.logo} alt={c.co} style={{height:36,width:36,objectFit:'contain',flexShrink:0}} />
+                    )}
+                  </div>
+                  <div className="co">{c.co}</div>
+                  {c.ticker && <div style={{fontFamily:'var(--font-mono)',fontSize:11.5,color:'var(--slate-400)',margin:'-2px 0 8px'}}>{c.ticker}</div>}
+                  <div className="desc">{c.desc}</div>
                 </div>
-                <div className="co">{c.co}</div>
-                <div className="desc">{c.desc}</div>
-              </div>
-              <div className="foot">
-                <div style={{display:'flex',alignItems:'center',gap:10}}>
-                  {c.moic
-                    ? <span className="moic">{c.moic} MOIC</span>
-                    : <span style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:13,color:'var(--navy-600)'}}>Active</span>
-                  }
-                  {c.deepDive && <span style={{fontSize:11,fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.1em',color:'var(--navy-400)'}}>Deep dive ↗</span>}
+                <div className="foot">
+                  <div style={{display:'flex',alignItems:'center',gap:10}}>
+                    {c.moic
+                      ? <span className="moic">{c.moic} MOIC</span>
+                      : <span style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:13,color:'var(--navy-600)'}}>Active</span>
+                    }
+                    {c.deepDive && <span style={{fontSize:11,fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.1em',color:'var(--navy-600)',fontWeight:600}}>Investment deep dive ↗</span>}
+                  </div>
+                  <span className="year">
+                    {c.status === 'exited' ? `Acq. ${c.year}` : `Since ${c.year}`}
+                  </span>
                 </div>
-                <span className="year">
-                  {c.status === 'exited' ? `Acq. ${c.year}` : `Since ${c.year}`}
-                </span>
-              </div>
-            </div>
-          ))}
+              </>
+            );
+            return c.deepDive
+              ? <a className="pf-cell" key={c.co} href={c.deepDive} style={{textDecoration:'none'}}>{inner}</a>
+              : <div className="pf-cell pf-cell--static" key={c.co}>{inner}</div>;
+          })}
         </div>
       </div>
     </section>
@@ -595,50 +593,10 @@ function RequestModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-/* ---- Company Modal ---- */
-function CompanyModal({ company, onClose }: { company: Company | null; onClose: () => void }) {
-  if (!company) return null;
-  return (
-    <div className="scrim" onClick={onClose}>
-      <div className="modal" onClick={e => e.stopPropagation()} style={{maxWidth:520}}>
-        <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:16,marginBottom:4}}>
-          <span className="eyebrow">{company.sector}</span>
-          {company.logo && <img src={company.logo} alt={company.co} style={{height:40,width:40,objectFit:'contain',flexShrink:0}} />}
-        </div>
-        <h3 style={{marginBottom:6}}>{company.co}</h3>
-        {company.ticker && <div style={{fontFamily:'var(--font-mono)',fontSize:12,color:'var(--slate-500)',marginBottom:12}}>{company.ticker}</div>}
-        <p style={{fontSize:15,color:'var(--slate-600)',lineHeight:1.65,marginTop:0}}>{company.detail ?? company.desc}</p>
-        <div style={{display:'flex',gap:0,borderTop:'1px solid var(--border)',marginTop:18}}>
-          {([
-            ['Invested', company.year],
-            ['Gross MOIC', company.moic ?? '—'],
-            ['Status', company.status === 'exited' ? 'Exited' : 'Active'],
-          ] as [string, string][]).map(([l, v]) => (
-            <div key={l} style={{flex:1,padding:'16px 0'}}>
-              <div style={{fontFamily:'var(--font-mono)',fontWeight:500,fontSize:20,color: v === 'Active' ? 'var(--navy-600)' : 'var(--ink)'}}>{v}</div>
-              <div style={{fontSize:11,color:'var(--slate-500)',marginTop:2}}>{l}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{display:'flex',gap:10,marginTop:8,flexWrap:'wrap'}}>
-          {company.deepDive && (
-            <a href={company.deepDive}
-               style={{fontFamily:'var(--font-sans)',fontWeight:600,fontSize:14,color:'#fff',background:'var(--navy-600)',border:'1px solid transparent',borderRadius:6,padding:'10px 18px',textDecoration:'none',display:'inline-flex',alignItems:'center',gap:6}}>
-              Investment deep dive <IconArrowUpRight size={14} />
-            </a>
-          )}
-          <button className="btn btn-secondary" onClick={onClose}>Close</button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ---- Page ---- */
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showRequest, setShowRequest] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -656,13 +614,12 @@ export default function Home() {
       <Hero onRequest={() => setShowRequest(true)} />
       <Strategy />
       <StatBand />
-      <Portfolio onSelect={setSelectedCompany} />
+      <Portfolio />
       <Team />
       <News />
       <CTA onRequest={() => setShowRequest(true)} />
       <Footer />
       {showRequest && <RequestModal onClose={() => setShowRequest(false)} />}
-      {selectedCompany && <CompanyModal company={selectedCompany} onClose={() => setSelectedCompany(null)} />}
     </div>
   );
 }
