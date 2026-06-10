@@ -464,14 +464,14 @@ function News() {
   const items = [
     { pub: 'Catapult Capital', title: 'Cellanome: The Platform for Living Biology', date: '2026', href: '/insights/cellanome' },
     { pub: 'Catapult Capital', title: 'Moving the Lab to the Patient: Why We Invested in Genalyte', date: '2025', href: '/insights/genalyte' },
-    { pub: 'Bloomberg', title: 'SpaceX Investor Powerlaw Debuts on Nasdaq as IPO Race Heats Up', date: 'May 27, 2026' },
-    { pub: 'FinStrat Management', title: 'Building the Future of Crypto Trading with Rick Marini of Rails', date: 'May 26, 2026' },
-    { pub: 'Second In Command Podcast', title: "Grindr's $2 Billion IPO: Rebuilding Culture & Tech | Rick Marini", date: 'April 16, 2026' },
-    { pub: 'My First Million', title: 'How two straight guys bought Grindr and made $2B', date: 'October 13, 2025' },
-    { pub: 'UNH Today', title: 'Investing in Students: Back Where It All Began', date: 'July 14, 2025' },
-    { pub: 'Marketing Dive', title: 'Publicis Acquires Captiv8 as Influencer Marketing Ambitions Expand', date: 'May 22, 2025' },
-    { pub: 'Exitwise', title: 'Investment Thesis of an Experienced Angel Investor | Rick Marini on The Wise Exit', date: 'Sep 26, 2022' },
-    { pub: 'Reuters', title: 'Gay Dating App Grindr to Go Public in $2.1 Billion SPAC Deal', date: 'May 10, 2022' },
+    { pub: 'Bloomberg', title: 'SpaceX Investor Powerlaw Debuts on Nasdaq as IPO Race Heats Up', date: 'May 27, 2026', href: 'https://www.bloomberg.com/news/articles/2026-05-27/spacex-investor-powerlaw-to-debut-on-nasdaq-as-ipo-race-heats-up' },
+    { pub: 'FinStrat Management', title: 'Building the Future of Crypto Trading with Rick Marini of Rails', date: 'May 26, 2026', href: 'https://www.youtube.com/watch?v=DndVNKbkPkQ' },
+    { pub: 'Second In Command Podcast', title: "Grindr's $2 Billion IPO: Rebuilding Culture & Tech | Rick Marini", date: 'April 16, 2026', href: 'https://www.youtube.com/watch?v=Hd6SMztHM5g' },
+    { pub: 'My First Million', title: 'How two straight guys bought Grindr and made $2B', date: 'October 13, 2025', href: 'https://www.youtube.com/watch?v=LrjyZaibkhY' },
+    { pub: 'UNH Today', title: 'Investing in Students: Back Where It All Began', date: 'July 14, 2025', href: 'https://www.unh.edu/unhtoday/2025/07/investing-students-back-where-it-all-began' },
+    { pub: 'Marketing Dive', title: 'Publicis Acquires Captiv8 as Influencer Marketing Ambitions Expand', date: 'May 22, 2025', href: 'https://www.marketingdive.com/news/publicis-acquires-captiv8-as-influencer-marketing-ambitions-expand/748817/' },
+    { pub: 'Exitwise', title: 'Investment Thesis of an Experienced Angel Investor | Rick Marini on The Wise Exit', date: 'Sep 26, 2022', href: 'https://www.youtube.com/watch?v=tdWIOO2q4fY' },
+    { pub: 'Reuters', title: 'Gay Dating App Grindr to Go Public in $2.1 Billion SPAC Deal', date: 'May 10, 2022', href: 'https://www.reuters.com/technology/gay-dating-app-grindr-go-public-via-blank-check-company-2022-05-09/' },
   ];
   return (
     <section className="section section--paper" id="insights">
@@ -489,8 +489,10 @@ function News() {
                 <div style={{fontSize:12,color:'var(--slate-400)',fontFamily:'var(--font-mono)'}}>{item.date}</div>
               </>
             );
+            const external = item.href?.startsWith('http');
             return item.href
-              ? <a key={i} className="news-cell" href={item.href}>{inner}</a>
+              ? <a key={i} className="news-cell" href={item.href}
+                   {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{inner}</a>
               : <div key={i} className="news-cell">{inner}</div>;
           })}
         </div>
