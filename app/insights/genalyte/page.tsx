@@ -29,7 +29,7 @@ export default function GenalytePage() {
       {/* Top bar */}
       <div style={{background:'rgba(255,255,255,.92)',backdropFilter:'blur(8px)',borderBottom:'1px solid var(--border)',position:'sticky',top:0,zIndex:40}}>
         <div style={{maxWidth:'var(--container)',margin:'0 auto',padding:'0 32px',height:66,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <Link href="/"><img src="/assets/catapult-logo-horizontal.png" alt="Catapult Capital" style={{height:22,display:'block'}} /></Link>
+          <Link href="/"><img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" style={{height:29,display:'block'}} /></Link>
           <Link href="/#insights" style={{fontSize:13,color:'var(--slate-600)',textDecoration:'none'}}>← Back to insights</Link>
         </div>
       </div>

@@ -54,7 +54,7 @@ export default function DealDashboard() {
       <div style={{background:'rgba(255,255,255,.85)',backdropFilter:'blur(8px)',borderBottom:'1px solid var(--border)',position:'sticky',top:0,zIndex:40}}>
         <div className="deal-topbar-inner">
           <div style={{display:'flex',alignItems:'center',gap:24}}>
-            <a href="/"><img src="/assets/catapult-logo-horizontal.png" alt="Catapult Capital" style={{height:22,display:'block'}} /></a>
+            <a href="/"><img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" style={{height:29,display:'block'}} /></a>
             <span style={{color:'var(--border)',fontSize:20}}>|</span>
             <Link href="/portal/deals" style={{fontSize:13,color:'var(--slate-600)',textDecoration:'none'}}>← All investments</Link>
           </div>

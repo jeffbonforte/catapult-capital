@@ -5,7 +5,7 @@
 /* sidebar */
 .sidebar{width:248px;flex:none;background:var(--navy-900);color:var(--fg-on-brand-muted);display:flex;flex-direction:column;padding:0}
 .sb-logo{padding:22px 22px 26px;border-bottom:1px solid var(--border-on-brand)}
-.sb-logo img{height:24px}
+.sb-logo img{height:31px}
 .sb-section{padding:18px 14px 6px}
 .sb-section .lbl{font-family:var(--font-brand);text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:#5E78A0;padding:0 10px 8px}
 .sb-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer;color:var(--fg-on-brand-muted);transition:all var(--dur-base) var(--ease-standard);margin-bottom:2px}
@@ -109,7 +109,7 @@ table.data tbody tr:hover{background:var(--navy-50)}
   .app{flex-direction:column;height:auto;min-height:100vh;overflow:visible}
   .sidebar{width:100%;flex-direction:row;align-items:center;padding:10px 16px;gap:4px}
   .sb-logo{display:block;padding:0;border:0;margin-right:auto}
-  .sb-logo img{height:18px}
+  .sb-logo img{height:23px}
   .sb-section{display:flex;align-items:center;padding:0;gap:2px}
   .sb-item{padding:9px 10px;margin:0}
   .sb-foot{margin:0;padding:0 0 0 10px;border:0}

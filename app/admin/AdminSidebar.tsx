@@ -19,7 +19,7 @@ export default function AdminSidebar({ user }: { user: any }) {
   return (
     <aside style={{width:240,flexShrink:0,background:'var(--navy-900)',color:'var(--fg-on-brand-muted)',display:'flex',flexDirection:'column'}}>
       <div style={{padding:'22px 22px 24px',borderBottom:'1px solid var(--border-on-brand)'}}>
-        <img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" style={{height:22,filter:'brightness(0) invert(1)'}} />
+        <img src="/assets/catapult-logo-horizontal-transparent.png" alt="Catapult Capital" style={{height:29,filter:'brightness(0) invert(1)'}} />
         <div style={{fontSize:10,color:'#5E78A0',fontFamily:'var(--font-brand)',textTransform:'uppercase',letterSpacing:'.16em',marginTop:12}}>Admin Portal</div>
       </div>
       <nav style={{padding:'12px 12px',flex:1}}>
